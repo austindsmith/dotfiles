@@ -1,0 +1,12 @@
+# font
+font_size 12.0
+font_family FiraCode Nerd Font
+adjust_line_height 0
+
+# behavior
+confirm_os_window_close 0
+enable_audio_bell no
+
+# tabs
+tab_bar_style powerline
+tab_title_template "{title}"
