@@ -10,3 +10,17 @@ enable_audio_bell no
 # tabs
 tab_bar_style powerline
 tab_title_template "{title}"
+
+
+# opacity
+background_opacity 0.4
+
+
+# shell
+shell /usr/bin/zsh
+
+
+# BEGIN_KITTY_THEME
+
+#include wallust.conf
+
