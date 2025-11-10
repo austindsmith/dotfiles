@@ -79,18 +79,21 @@
 	"nospacing": 1,
     },
     "wireplumber": {
-        "format": "{icon}",
-        "format-bluetooth": "󰂰",
-        "nospacing": 1,
-        "tooltip-format": "Volume : {volume}%",
-        "format-muted": "󰝟",
-        "format-icons": {
-            "headphone": "",
-            "default": ["󰖀","󰕾",""]
-        },
-        "on-click": "pamixer -t",
-        "scroll-step": 1
+      "format": "{volume}% {icon}",
+      "format-bluetooth": "󰂰",
+      "format-muted": "󰝟",
+      "format-icons": {
+        "headphone": "",
+        "default": ["󰖀","󰕾",""]
+      },
+      "scroll-step": 5,
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "on-click-right": "pavucontrol &",
+      "on-click-middle": "~/.config/rofi/audio/switch-sink.sh &",
+      "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
     },
+
     "custom/logo": {
         "format": "  ",
         "tooltip": false,
