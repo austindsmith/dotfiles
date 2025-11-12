@@ -23,7 +23,7 @@ vim.g.maplocalleader = "\\"
 require("config.keymaps")
 
 -- Imports vim-options under the lua directory
-require("vim-options")
+require("config.vim-options")
 
 -- Imports terminal toggle under the lua directory
 require("terminal-toggle")
