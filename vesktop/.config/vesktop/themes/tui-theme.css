@@ -12,10 +12,11 @@
 
 /* import theme modules */
 @import url('https://refact0r.github.io/system24/build/system24.css');
+@import url('./colors.css');
 
 body {
     /* font, change to '' for default discord font */
-    --font: 'DM Mono'; /* change to '' for default discord font */
+    --font: 'FiraCode Nerd Font'; /* change to '' for default discord font */
     --code-font: 'DM Mono'; /* change to '' for default discord font */
     font-weight: 300; /* text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
     letter-spacing: -0.05ch; /* decreases letter spacing for better readability. recommended on monospace fonts.*/
@@ -58,10 +59,10 @@ body {
 
     /* transparency/blur options */
     /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
-    --transparency-tweaks: off; /* off: no changes, on: remove some elements for better transparency */
-    --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+    --transparency-tweaks: on; /* off: no changes, on: remove some elements for better transparency */
+    --remove-bg-layer: on; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
     --panel-blur: off; /* off: no changes, on: blur the background of panels */
-    --blur-amount: 12px; /* amount of blur */
+    --blur-amount: 5px; /* amount of blur */
     --bg-floating: var(--bg-3); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
 
     /* other options */
@@ -86,18 +87,18 @@ body {
     --colors: on; /* off: discord default colors, on: midnight custom colors */
 
     /* text colors */
-    --text-0: var(--bg-4); /* text on colored elements */
-    --text-1: oklch(95% 0 0); /* other normally white text */
-    --text-2: oklch(85% 0 0); /* headings and important text */
-    --text-3: oklch(75% 0 0); /* normal text */
-    --text-4: oklch(60% 0 0); /* icon buttons and channels */
+    --text-0: var(--foreground); /* text on colored elements */
+    --text-1: var(--color0); /* oklch(95% 0 0); */ /* other normally white text */
+    --text-2: var(--foreground); /* headings and important text */
+    --text-3: var(--foreground);/* oklch(75% 0 0);*/ /* normal text */
+    --text-4: var(--color6); /* icon buttons and channels */
     --text-5: oklch(40% 0 0); /* muted channels/chats and timestamps */
 
     /* background and dark colors */
     --bg-1: oklch(31% 0 0); /* dark buttons when clicked */
     --bg-2: oklch(27% 0 0); /* dark buttons */
     --bg-3: oklch(23% 0 0); /* spacing, secondary elements */
-    --bg-4: oklch(19% 0 0); /* main background color */
+    --bg-4: var(--background);/*--bg-4: oklch(19% 0 0);*/ /* main background color */
     --hover: oklch(54% 0 0 / 0.1); /* channels and buttons when hovered */
     --active: oklch(54% 0 0 / 0.2); /* channels and buttons when clicked or selected */
     --active-2: oklch(54% 0 0 / 0.3); /* extra state for transparent buttons */

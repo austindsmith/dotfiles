@@ -1,5 +1,5 @@
 return {
-  {
+	{
 		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup()
@@ -15,11 +15,10 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-    lazy = false, 
+		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			
-    vim.lsp.config("lua_ls", {
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 			}) -- define/override settings
 			vim.lsp.enable("lua_ls") -- start it for its filetypes
