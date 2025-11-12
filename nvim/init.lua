@@ -19,6 +19,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Import custom configs
+require("config.keymaps")
+
 -- Imports vim-options under the lua directory
 require("vim-options")
 

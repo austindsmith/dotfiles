@@ -1,0 +1,9 @@
+emulationstation-de
+freelens-bin
+input-remapper-bin
+masterpdfeditor
+rofi-power-menu
+rustdesk-bin
+steam-native-runtime
+wallust
+wazuh-agent
