@@ -32,3 +32,5 @@ require("terminal-toggle")
 require("lazy").setup("plugins", {
 	checker = { enabled = true },
 })
+
+vim.cmd([[autocmd VimEnter * Neotree]])

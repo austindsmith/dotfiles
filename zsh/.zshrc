@@ -23,3 +23,12 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="$HOME/.local/bin:$PATH"
+
+# environment variables
+# kubernetes
+export KUBECONFIG=~/.kube/k3s.yaml
+
+# mpd (for rmpc)
+export MPD_HOST="127.0.0.1"
+export MPD_PORT="6600"

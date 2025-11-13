@@ -1,4 +1,3 @@
-
 /* Variables */
 @define-color mantle #1e2030;
 @define-color base rgb(36, 39, 58);
@@ -20,6 +19,8 @@
 @define-color pink #f5bde6;
 @define-color border rgba(183, 189, 248, 0.4);
 @define-color shadow rgb(30, 32, 48);
+
+@import url("file:///home/austin/.cache/wal/colors-waybar.css");
 
 * {
   font-family: FiraCode Nerd Font;
@@ -157,28 +158,58 @@ window#waybar.hidden {
 }
 
 /* Individual Modules */
-#battery { color: @mauve; }
-#battery.warning { color: @yellow; }
-#battery.critical { color: @peach; }
-#battery.urgent { color: @red; }
+#battery {
+  color: @mauve;
+}
+#battery.warning {
+  color: @yellow;
+}
+#battery.critical {
+  color: @peach;
+}
+#battery.urgent {
+  color: @red;
+}
 
 #custom-cava {
   color: @lavender;
   border-radius: 12px;
 }
 
-#cpu { color: @blue; }
-#memory { color: @green; }
+#cpu {
+  color: @blue;
+}
+#memory {
+  color: @green;
+}
 
-#custom-notifications { color: @yellow; }
-#custom-weather { color: @red; }
-#custom-updates { color: @teal; }
-#custom-wf-recorder { color: @red; }
-#custom-gpu-temp { color: @peach; }
-#custom-gpu-usage { color: @teal; }
-#custom-power-menu { color: @red; }
-#temperature { color: @peach; }
-#bluetooth { color: @blue; }
+#custom-notifications {
+  color: @yellow;
+}
+#custom-weather {
+  color: @red;
+}
+#custom-updates {
+  color: @teal;
+}
+#custom-wf-recorder {
+  color: @red;
+}
+#custom-gpu-temp {
+  color: @peach;
+}
+#custom-gpu-usage {
+  color: @teal;
+}
+#custom-power-menu {
+  color: @red;
+}
+#temperature {
+  color: @peach;
+}
+#bluetooth {
+  color: @blue;
+}
 
 #window {
   background: linear-gradient(
@@ -217,10 +248,18 @@ window#waybar.hidden {
   border: none;
 }
 
-#custom-fans { color: @green; }
-#clock { color: @lavender; }
-#language { color: @blue; }
-#pulseaudio { color: @pink; }
+#custom-fans {
+  color: @green;
+}
+#clock {
+  color: @lavender;
+}
+#language {
+  color: @blue;
+}
+#pulseaudio {
+  color: @pink;
+}
 
 #pulseaudio.muted {
   background-color: @red;
@@ -232,9 +271,13 @@ window#waybar.hidden {
   color: @mantle;
 }
 
-#backlight { color: @blue; }
+#backlight {
+  color: @blue;
+}
 
-#battery { color: @green; }
+#battery {
+  color: @green;
+}
 
 #battery.charging,
 #battery.plugged {
@@ -243,11 +286,13 @@ window#waybar.hidden {
 }
 
 #battery.critical:not(.charging) {
-  background-color: @red;   /* no blink */
+  background-color: @red; /* no blink */
   color: @mantle;
 }
 
-#network { color: @sky; }
+#network {
+  color: @sky;
+}
 
 #network.disconnected {
   background-color: @red;
