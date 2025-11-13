@@ -29,6 +29,8 @@
 }
 
 /* General Settings */
+#wireplumber,
+#custom-power,
 #battery,
 #cava,
 #custom-cava,
@@ -65,17 +67,17 @@
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.default {
-  background-color: alpha(@base, 0.9);
+  background-color: alpha(@background, 0.9);
   padding: 0 10px;
   margin: 2px 4px 5px 4px;
   border-radius: 10px;
   box-shadow: 2px 2px 1px 1px alpha(@shadow, 0.6);
-  border: 2px solid @border;
+  border: 2px solid @color6;
   background-clip: padding-box;
 }
 
 window#waybar {
-  color: @text;
+  color: @foreground;
   background: transparent;
 }
 
@@ -88,7 +90,7 @@ window#waybar.hidden {
 }
 
 #workspaces button label {
-  color: @lavender;
+  color: @color12;
   font-weight: bolder;
 }
 
@@ -107,8 +109,8 @@ window#waybar.hidden {
 }
 
 #workspaces {
-  background-color: alpha(@base, 0.9);
-  border: 2px solid @border;
+  background-color: alpha(@background, 0.9);
+  border: 2px solid @color6;
   padding: 0 10px;
   margin: 2px 4px 5px 4px;
   box-shadow: 2px 2px 1px 1px alpha(@shadow, 0.6);
@@ -122,7 +124,7 @@ window#waybar.hidden {
   padding: 0 5px;
   font-weight: bolder;
   min-width: 20px;
-  color: @base;
+  color: @color4;
 }
 
 #workspaces button.active {
@@ -132,14 +134,7 @@ window#waybar.hidden {
   padding-bottom: 3px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background: linear-gradient(
-    52deg,
-    rgba(139, 213, 202, 1) 0%,
-    rgba(138, 173, 244, 1) 30%,
-    rgba(183, 189, 248, 1) 48%,
-    rgba(198, 160, 246, 1) 77%,
-    rgba(238, 153, 160, 1) 100%
-  );
+  background: @color13;
   background-size: 100% 100%; /* static */
   color: @mauve;
   border-radius: 12px;
@@ -252,7 +247,8 @@ window#waybar.hidden {
   color: @green;
 }
 #clock {
-  color: @lavender;
+  background-color: @background;
+  color: @color4;
 }
 #language {
   color: @blue;
@@ -291,7 +287,7 @@ window#waybar.hidden {
 }
 
 #network {
-  color: @sky;
+  color: @color4;
 }
 
 #network.disconnected {
@@ -314,7 +310,7 @@ window#waybar.hidden {
     rgba(238, 153, 160, 1) 100%
   );
   background-size: 100% 100%; /* static */
-  text-shadow: 0px 0px 5px @border;
+  text-shadow: 0px 0px 5px @color6;
   font-weight: bold;
   color: @mantle;
   border: none;

@@ -16,6 +16,10 @@ autoload -Uz compinit
 compinit
 zmodload zsh/complist
 
+
+# zoxide
+eval "$(zoxide init zsh)"
+
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/bin/terraform terraform
 eval "$(carapace _carapace zsh)"

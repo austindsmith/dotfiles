@@ -1,0 +1,145 @@
+
+/* obsidian.css pywal template */
+
+/* Override core theme variables */
+.theme-dark,
+.theme-light {{
+  /* backgrounds with transparency */
+  --background-primary: {background}E6;         /* main panes */
+  --background-secondary: {color0}CC;          /* sidebars */
+  --background-secondary-alt: {color1}CC;      /* modals, etc. */
+
+  /* borders / outlines (slightly transparent) */
+  --background-modifier-border: {color8}CC;
+  --background-modifier-border-hover: {color9}CC;
+
+  /* text */
+  --text-normal: {foreground};
+  --text-muted: {color7};
+  --text-faint: {color7};
+
+  /* accents */
+  --interactive-accent: {color4};
+  --interactive-accent-hover: {color5};
+  --text-accent: {color4};
+  --text-accent-hover: {color5};
+
+  /* tags / code blocks */
+  --tag-background: {color1}CC;
+  --tag-border-color: {color4};
+  --code-background: {color0}CC;
+}}
+
+/* Glassy workspace + note background */
+.theme-dark .workspace,
+.theme-light .workspace,
+.theme-dark .mod-root,
+.theme-light .mod-root,
+.theme-dark .markdown-preview-view,
+.theme-light .markdown-preview-view,
+.theme-dark .markdown-source-view.mod-cm6,
+.theme-light .markdown-source-view.mod-cm6 {{
+  background-color: var(--background-primary) !important;
+  backdrop-filter: blur(8px);
+}}
+
+/* Sidebars slightly darker */
+.theme-dark .workspace-split.mod-left-split,
+.theme-light .workspace-split.mod-left-split,
+.theme-dark .workspace-split.mod-right-split,
+.theme-light .workspace-split.mod-right-split {{
+  background-color: var(--background-secondary) !important;
+}}
+
+/* Headers – PREVIEW colors + font */
+.theme-dark .markdown-preview-view h1,
+.theme-light .markdown-preview-view h1,
+.theme-dark .markdown-preview-view h2,
+.theme-light .markdown-preview-view h2,
+.theme-dark .markdown-preview-view h3,
+.theme-light .markdown-preview-view h3,
+.theme-dark .markdown-preview-view h4,
+.theme-light .markdown-preview-view h4,
+.theme-dark .markdown-preview-view h5,
+.theme-light .markdown-preview-view h5,
+.theme-dark .markdown-preview-view h6,
+.theme-light .markdown-preview-view h6 {{
+  font-family: "DM Mono", system-ui, sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}}
+
+/* Different colors per level – PREVIEW */
+.theme-dark .markdown-preview-view h1,
+.theme-light .markdown-preview-view h1 {{
+  color: {color4} !important;
+  border-bottom: 1px solid {color4}55;
+  padding-bottom: 0.15rem;
+}}
+
+.theme-dark .markdown-preview-view h2,
+.theme-light .markdown-preview-view h2 {{
+  color: {color5} !important;
+}}
+
+.theme-dark .markdown-preview-view h3,
+.theme-light .markdown-preview-view h3 {{
+  color: {color6} !important;
+}}
+
+.theme-dark .markdown-preview-view h4,
+.theme-light .markdown-preview-view h4 {{
+  color: {color7} !important;
+}}
+
+.theme-dark .markdown-preview-view h5,
+.theme-light .markdown-preview-view h5,
+.theme-dark .markdown-preview-view h6,
+.theme-light .markdown-preview-view h6 {{
+  color: {color8} !important;
+}}
+
+/* Headers – EDITOR (Live Preview) colors + font */
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-1,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-1,
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-2,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-2,
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-3,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-3,
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-4,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-4,
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-5,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-5,
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-6,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-6 {{
+  font-family: "DM Mono", system-ui, sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-1,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-1 {{
+  color: {color4} !important;
+}}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-2,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-2 {{
+  color: {color5} !important;
+}}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-3,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-3 {{
+  color: {color6} !important;
+}}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-4,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-4 {{
+  color: {color7} !important;
+}}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-5,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-5,
+.theme-dark .markdown-source-view.mod-cm6 .cm-header-6,
+.theme-light .markdown-source-view.mod-cm6 .cm-header-6 {{
+  color: {color8} !important;
+}}
