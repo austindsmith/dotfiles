@@ -49,6 +49,7 @@ cachyos-wallpapers
 cachyos-zsh-config
 char-white
 chwd
+cliphist
 cloudflare-warp-bin
 cpupower
 cryptsetup
@@ -56,7 +57,6 @@ dbeaver
 device-mapper
 dhclient
 diffutils
-discord
 dmidecode
 dmraid
 dnsmasq
@@ -65,6 +65,7 @@ docker-buildx
 docker-compose
 dolphin
 dosfstools
+downgrade
 duf
 e2fsprogs
 efibootmgr
@@ -106,7 +107,9 @@ hwdetect
 hwinfo
 hyphen-en
 hyprland
+hyprlock
 hyprpaper
+hyprpicker
 hyprshot
 inetutils
 intel-ucode
@@ -164,7 +167,11 @@ mesa-utils
 micro
 mkinitcpio
 modemmanager
+mopidy
+mpc
+mpd
 mtools
+mutt
 mythes-en
 nano
 nano-syntax-highlighting
@@ -228,11 +235,14 @@ python
 python-defusedxml
 python-packaging
 python-pip
+python-pipx
 qt6-wayland
+ranger
 rclone
 rebuild-detector
 reflector
 ripgrep
+rmpc
 rofi
 rsync
 rtkit
@@ -254,7 +264,9 @@ sshfs
 ssh-tools
 starship
 steam
+stow
 sudo
+swaync
 swww
 sysfsutils
 systemd-boot-manager
@@ -265,6 +277,7 @@ thunar-archive-plugin
 thunar-volman
 thunderbird
 timeshift
+torbrowser-launcher
 tree
 ttf-bitstream-vera
 ttf-dejavu
@@ -320,4 +333,5 @@ xorg-xrandr
 xournalpp
 xsettingsd
 yay-bin
+zen-browser-bin
 zoxide

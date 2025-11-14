@@ -1,3 +1,4 @@
+import url("file:///home/austin/.cache/wal/colors-sway");
 @define-color cc-bg rgba(0, 0, 0, 1);
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
 @define-color noti-bg #24273a;
@@ -7,6 +8,7 @@
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
 @define-color text-color #cad3f5;
+
 
 * {
   all: unset;

@@ -5,9 +5,25 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local builtin = require("telescope.builtin")
+
+			-- existing mappings
 			vim.keymap.set("n", "<c-p>", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 			vim.keymap.set("n", "<leader>ff", builtin.buffers, {})
+
+			-- vertical split + Telescope
+			vim.keymap.set("n", "<leader>vs", function()
+				vim.cmd("vsplit") -- create vertical split
+				vim.cmd("wincmd l") -- move to the right split
+				builtin.find_files() -- run the same picker as <C-p>
+			end, { desc = "Vsplit + Telescope find files" })
+
+			-- horizontal split + Telescope
+			vim.keymap.set("n", "<leader>hs", function()
+				vim.cmd("split") -- create horizontal split
+				vim.cmd("wincmd j") -- move to the bottom split
+				builtin.find_files() -- same picker, new window
+			end, { desc = "Hsplit + Telescope find files" })
 		end,
 	},
 	{
@@ -16,10 +32,7 @@ return {
 			require("telescope").setup({
 				pickers = {
 					find_files = {
-						-- include dotfiles and follow symlinks by default
 						find_command = { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" },
-						-- if you prefer ripgrep:
-						-- find_command = { "rg", "--files", "--hidden", "--follow", "-g", "!.git" },
 					},
 					live_grep = {
 						additional_args = function()
@@ -27,7 +40,6 @@ return {
 						end,
 					},
 				},
-
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown({}),

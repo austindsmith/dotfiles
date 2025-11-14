@@ -14,3 +14,9 @@ Hides .git, but shows other hidden folders
 ### None-ls
 
 This is to manage auto formatters.
+
+### Todos
+
+- [ ] Set color to pull from pywal for title-bars.lua
+- [ ] Set color to pull from pywal for render-markdown.lua
+- [ ] Set color to pull from pywal for window-highlighter.lua

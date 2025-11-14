@@ -16,7 +16,8 @@ autoload -Uz compinit
 compinit
 zmodload zsh/complist
 
-
+# Display setting for neomutt colors to work
+alias neomutt='TERM=xterm-direct neomutt'
 # zoxide
 eval "$(zoxide init zsh)"
 
