@@ -39,3 +39,5 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
+          SUPER_LINTER_ACTIONS_RUNNER_DEBUG: true
+          SUPER_LINTER_VERBOSE: true
