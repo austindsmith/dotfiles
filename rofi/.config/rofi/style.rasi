@@ -10,7 +10,7 @@ configuration {
   me-accept-entry:            [ MousePrimary, MouseSecondary, MouseDPrimary ];
 }
 
-@theme "~/.config/rofi/theme/catppuccin-macchiato.rasi"
+@theme "~/.cache/wal/colors-rofi-dark.rasi"
 
 // Main Window
 window {
