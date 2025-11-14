@@ -1,37 +1,60 @@
-#source /usr/share/cachyos-zsh-config/cachyos-config.zsh
 
+# Use this file to store Zsh command history
 HISTFILE=$HOME/.zsh_history
+
+# Number of commands to keep in memory history for the current session
 HISTSIZE=10000
+
+# Number of commands to save to the history file on disk
 SAVEHIST=10000
+
+# Write each command to the history file immediately as it’s executed
+# and share history across all running Zsh sessions
 setopt INC_APPEND_HISTORY SHARE_HISTORY
+
+# Load and initialize Zsh’s completion system
 autoload -Uz compinit
 compinit
+
+# Load the Zsh module that provides advanced completion-list behavior
 zmodload zsh/complist
 
-# Display setting for neomutt colors to work
+# Always run neomutt with TERM=xterm-direct so colors and UI behave correctly
 alias neomutt='TERM=xterm-direct neomutt'
 
-# zoxide
+# Use this Starship configuration file instead of the default
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+# Initialize zoxide (smart cd replacement) for Zsh
 eval "$(zoxide init zsh)"
+
+# Initialize the Starship prompt for Zsh
 eval "$(starship init zsh)"
 
-
-# starship config file
-
-# autoload -U +X bashcompinit && bashcompinit
-# complete -o nospace -C /usr/bin/terraform terraform
+# Enable Carapace for richer shell completions for many CLI tools
 eval "$(carapace _carapace zsh)"
+
+# Enable Zsh plugin: suggests command completions as you type, based on history
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Enable Zsh plugin: colors your command line to show valid/invalid syntax, etc.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# (Duplicate) autosuggestions plugin load – functionally redundant
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# (Duplicate) syntax-highlighting plugin load – functionally redundant
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Add ~/.local/bin to the front of PATH so your local scripts/tools are found first
 export PATH="$HOME/.local/bin:$PATH"
 
-# environment variables
-# kubernetes
+# Default kubeconfig file for kubectl and other Kubernetes tools
 export KUBECONFIG=~/.kube/k3s.yaml
 
-# mpd (for rmpc)
+# Default host and port for MPD clients (like rmpc / ncmpcpp) to connect to MPD
 export MPD_HOST="127.0.0.1"
 export MPD_PORT="6600"
+
+# Preferred editor for command-line tools (currently commented out)
+# export EDITOR='nvim'
