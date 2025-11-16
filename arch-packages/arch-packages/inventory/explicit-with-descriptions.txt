@@ -1,0 +1,357 @@
+accountsservice                 D-Bus interface for user account query and manipulation
+adobe-source-han-sans-cn-fonts  Adobe Source Han Sans Subset OTF - Simplified Chinese OpenType/CFF fonts
+adobe-source-han-sans-jp-fonts  Adobe Source Han Sans Subset OTF - Japanese OpenType/CFF fonts
+adobe-source-han-sans-kr-fonts  Adobe Source Han Sans Subset OTF - Korean OpenType/CFF fonts
+age                             A simple, modern and secure file encryption tool
+alacritty                       A cross-platform, GPU-accelerated terminal emulator
+alsa-firmware                   Firmware binaries for loader programs in alsa-tools and hotplug firmware loader
+alsa-plugins                    Additional ALSA plugins
+alsa-utils                      Advanced Linux Sound Architecture - Utilities
+android-tools                   Android platform tools
+android-udev                    Udev rules to connect Android devices to your linux box
+ark                             Archiving Tool
+awesome-terminal-fonts          fonts/icons for powerlines
+base                            Minimal package set to define a basic Arch Linux installation
+base-devel                      Basic tools to build Arch Linux packages
+bash-completion                 Programmable completion for the bash shell
+bind                            A complete, highly portable implementation of the DNS protocol
+bluedevil                       Integrate the Bluetooth technology within KDE workspace and applications
+bluez                           Daemons for the bluetooth protocol stack
+bluez-hid2hci                   Put HID proxying bluetooth HCI's into HCI mode
+bluez-libs                      Deprecated libraries for the bluetooth protocol stack
+bluez-utils                     Development and debugging utilities for the bluetooth protocol stack
+brave-bin                       Web browser that blocks ads and trackers by default (binary release)
+breeze-gtk                      Breeze widget theme for GTK 2 and 3
+btop                            A monitor of system resources, bpytop ported to C++
+btrfs-assistant                 An application for managing BTRFS subvolumes and Snapper snapshots
+btrfs-progs                     Btrfs filesystem utilities
+cachyos-emerald-kde-theme-git   CachyOS Emerald KDE Theme
+cachyos-fish-config             Fish configuration of CachyOS
+cachyos-gaming-applications     Common Applications used for Gaming
+cachyos-gaming-meta             Meta package for Gaming dependencies
+cachyos-hello                   Welcome screen for CachyOS
+cachyos-hooks                   CachyOS libalpm hooks
+cachyos-iridescent-kde          CachyOS cachyos-iridescent-kde
+cachyos-kde-settings            CachyOS KDE settings
+cachyos-kernel-manager          Simple kernel manager
+cachyos-keyring                 CachyOS keyring
+cachyos-micro-settings          CachyOS micro settings
+cachyos-mirrorlist              CachyOS repository mirrorlist
+cachyos-nord-kde-theme-git      CachyOS Nord KDE Theme
+cachyos-packageinstaller        Simple Software Application Package Installer for CachyOS which helps setting up & installing applications
+cachyos-plymouth-bootanimation  CachyOS Bootanimation (new)
+cachyos-rate-mirrors            CachyOS - Rate mirrors service
+cachyos-settings                CachyOS - Settings
+cachyos-themes-sddm             CachyOS-branded SDDM adaptation of archlinux-themes-kdm
+cachyos-v3-mirrorlist           CachyOS repository mirrorlist
+cachyos-v4-mirrorlist           CachyOS repository mirrorlist
+cachyos-wallpapers              Wallpapers for CachyOS
+cachyos-zsh-config              Zsh configuration for CachyOS
+carapace-bin                    A multi-shell completion binary
+char-white                      Char-White Icons
+chwd                            CachyOS Hardware Detection Tool
+cliphist                        wayland clipboard manager
+cloudflare-warp-bin             Cloudflare Warp Client
+cpupower                        Linux kernel tool to examine and tune power saving related features of your processor
+cryptsetup                      Userspace setup tool for transparent encryption of block devices using dm-crypt
+dbeaver                         Free universal SQL Client for developers and database administrators (community edition)
+device-mapper                   Device mapper userspace library and tools
+dhclient                        A standalone DHCP client from the dhcp package
+diffutils                       Utility programs used for creating patch files
+dmidecode                       Desktop Management Interface table related utilities
+dmraid                          Device mapper RAID interface
+dnsmasq                         Lightweight, easy to configure DNS forwarder and DHCP server
+docker                          Pack, ship and run any application as a lightweight container
+docker-buildx                   Docker CLI plugin for extended build capabilities with BuildKit
+docker-compose                  Fast, isolated development environments using Docker
+dolphin                         KDE File Manager
+dosfstools                      DOS filesystem utilities
+downgrade                       Bash script for downgrading one or more packages to a version in your cache or the A.L.A.
+duf                             Disk Usage/Free Utility
+e2fsprogs                       Ext2/3/4 filesystem utilities
+efibootmgr                      Linux user-space application to modify the EFI Boot Manager
+efitools                        Tools for manipulating UEFI secure boot platforms
+egl-wayland                     EGLStream-based Wayland external platform
+emacs                           The extensible, customizable, self-documenting real-time display editor
+emulationstation-de             ES-DE (EmulationStation Desktop Edition) is a frontend for browsing and launching games from your multi-platform collection
+ethtool                         Utility for controlling network drivers and hardware
+exfatprogs                      exFAT filesystem userspace utilities for the Linux Kernel exfat driver
+f2fs-tools                      Tools for Flash-Friendly File System (F2FS)
+fastfetch                       A feature-rich and performance oriented neofetch like system information tool
+ffmpegthumbnailer               Lightweight video thumbnailer that can be used by file managers
+ffmpegthumbs                    FFmpeg-based thumbnail creator for video files
+filelight                       View disk usage information
+firefox                         Fast, Private & Safe Web Browser
+firewalld                       Firewall daemon with D-Bus interface
+freelens-bin                    Free Open Source Kubernetes IDE
+fsarchiver                      Safe and flexible file-system backup and deployment tool
+fwupd                           Simple daemon to allow session software to update firmware
+gigolo                          Remote filesystem management frontend
+gimp                            GNU Image Manipulation Program
+git                             the fast distributed version control system
+github-cli                      The GitHub CLI
+glances                         CLI curses-based monitoring tool
+gst-libav                       Multimedia graph framework - libav plugin
+gst-plugin-pipewire             Multimedia graph framework - pipewire plugin
+gst-plugins-bad                 Multimedia graph framework - bad plugins
+gst-plugins-ugly                Multimedia graph framework - ugly plugins
+gvfs-afc                        Virtual filesystem implementation for GIO - AFC backend (Apple mobile devices)
+gvfs-gphoto2                    Virtual filesystem implementation for GIO - gphoto2 backend (PTP camera, MTP media player)
+gvfs-mtp                        Virtual filesystem implementation for GIO - MTP backend (Android, media player)
+gvfs-nfs                        Virtual filesystem implementation for GIO - NFS backend
+gvfs-smb                        Virtual filesystem implementation for GIO - SMB/CIFS backend (Windows file sharing)
+gwenview                        A fast and easy to use image viewer
+haruna                          Video player built with Qt/QML on top of libmpv
+haveged                         Entropy harvesting daemon using CPU timings
+hdparm                          A shell utility for manipulating Linux IDE drive/driver parameters
+helm                            The Kubernetes Package Manager
+hunspell-en_us                  US English hunspell dictionaries
+hwdetect                        Hardware detection script with loading modules and mkinitcpio.conf
+hwinfo                          Hardware detection tool from openSUSE
+hyphen-en                       English hyphenation rules
+hyprland                        a highly customizable dynamic tiling Wayland compositor
+hyprlock                        hyprland’s GPU-accelerated screen locking utility
+hyprpaper                       a blazing fast wayland wallpaper utility with IPC controls
+hyprpicker                      A wlroots-compatible Wayland color picker that does not suck
+hyprshot                        Hyprland screenshot utility
+inetutils                       A collection of common network programs
+input-remapper-bin              A tool to change and program the mapping of your input device buttons.(Prebuilt version)
+intel-ucode                     Microcode update files for Intel CPUs
+iptables-nft                    Linux kernel packet control tool (using nft interface)
+isoimagewriter                  Program to write hybrid ISO files onto USB disks
+iwd                             Internet Wireless Daemon
+jfsutils                        JFS filesystem utilities
+k9s                             TUI for managing Kubernetes clusters and pods
+kate                            Advanced text editor
+kcalc                           Scientific Calculator
+kde-gtk-config                  Syncs KDE settings to GTK applications
+kdeconnect                      Adds communication between KDE and your smartphone
+kdegraphics-thumbnailers        Thumbnailers for various graphics file formats
+kdeplasma-addons                All kind of addons to improve your Plasma experience
+kdialog                         A utility for displaying dialog boxes from shell scripts
+kinfocenter                     A utility that provides information about a computer system
+kio-admin                       Manage files as administrator using the admin:// KIO protocol
+kitty                           A modern, hackable, featureful, OpenGL-based terminal emulator
+konsole                         KDE terminal emulator
+kscreen                         KDE screen management software
+kubectl                         A command line tool for communicating with a Kubernetes API server
+kubectx                         Utility to manage and switch between kubectl contexts and Kubernetes namespaces
+kustomize                       Template-free customization of Kubernetes YAML manifests
+kwallet-pam                     KWallet PAM integration
+kwalletmanager                  Wallet management tool
+less                            A terminal based program for viewing text files
+lib32-nvidia-utils              NVIDIA drivers utilities (32-bit)
+lib32-opencl-nvidia             OpenCL implemention for NVIDIA (32-bit)
+lib32-vulkan-icd-loader         Vulkan Installable Client Driver (ICD) Loader (32-bit)
+libdvdcss                       Portable abstraction library for DVD decryption
+libgsf                          Extensible I/O abstraction library for dealing with structured file formats
+libopenraw                      Library for decoding RAW files
+libplasma                       Plasma library and runtime components
+libva-nvidia-driver             VA-API implementation that uses NVDEC as a backend
+libwnck3                        Library to manage X windows and workspaces (for e.g. pagers or tasklists)
+linux-cachyos                   The Linux BORE + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. kernel and modules
+linux-cachyos-headers           Headers and scripts for building modules for the Linux BORE + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. kernel
+linux-cachyos-lts               The Linux BORE + Cachy Sauce Kernel by CachyOS with other patches and improvements - Long Term Service kernel and modules
+linux-cachyos-lts-headers       Headers and scripts for building modules for the Linux BORE + Cachy Sauce Kernel by CachyOS with other patches and improvements - Long Term Service kernel
+linux-cachyos-lts-nvidia-open   nvidia open modules of 580.105.08 driver for the linux-cachyos-lts kernel
+linux-cachyos-nvidia-open       nvidia open modules of 580.105.08 driver for the linux-cachyos kernel
+linux-firmware                  Firmware files for Linux - Default set
+linux-headers                   Headers and scripts for building modules for the Linux kernel
+logrotate                       Rotates system logs automatically
+lsb-release                     LSB version query program
+lsscsi                          A tool that lists devices connected via SCSI and its transports
+lvm2                            Logical Volume Manager 2 utilities
+man-db                          A utility for reading man pages
+man-pages                       Linux man pages
+masterpdfeditor                 A complete solution for viewing, creating and editing PDF files
+mat2                            Metadata removal tool, supporting a wide range of commonly used file formats
+mdadm                           A tool for managing/monitoring Linux md device arrays, also known as Software RAID
+meld                            Compare files, directories and working copies
+mesa-demos                      Mesa demos
+mesa-utils                      Essential Mesa utilities
+micro                           Modern and intuitive terminal-based text editor
+mkinitcpio                      Modular initramfs image creation utility
+modemmanager                    Mobile broadband modem management service
+mopidy                          An extensible music server written in Python
+mopidy-mpd                      Mopidy extension for controlling playback from MPD clients
+mopidy-ytmusic                  Mopidy extension for playing music from Youtube Music
+mpc                             Minimalist command line interface to MPD
+mpd                             Flexible, powerful, server-side application for playing music
+mtools                          A collection of utilities to access MS-DOS disks
+mythes-en                       English thesaurus
+nano                            Pico editor clone with enhancements
+nano-syntax-highlighting        Nano editor syntax highlighting enhancements
+ncmpcpp                         Featureful ncurses based MPD client inspired by ncmpc
+neomutt                         A version of mutt with added features
+neovim                          Fork of Vim aiming to improve user experience, plugins, and GUIs
+netctl                          Profile based systemd network management
+networkmanager                  Network connection manager and user applications
+networkmanager-openvpn          NetworkManager VPN plugin for OpenVPN (with GUI)
+nfs-utils                       Support programs for Network File Systems
+nilfs-utils                     A log-structured file system supporting continuous snapshotting (userspace utils)
+noto-color-emoji-fontconfig     Fontconfig to enable Noto Color Emoji fonts where emojis can be displayed
+noto-fonts                      Google Noto TTF fonts
+noto-fonts-cjk                  Google Noto CJK fonts
+noto-fonts-emoji                Google Noto Color Emoji font
+npm                             JavaScript package manager
+nss-mdns                        glibc plugin providing host name resolution via mDNS
+ntfs-3g                         NTFS filesystem driver and utilities
+ntp                             Network Time Protocol reference implementation
+numlockx                        Turns on the numlock key in X11.
+nvidia-settings                 Tool for configuring the NVIDIA graphics driver
+nvidia-utils                    NVIDIA drivers utilities
+nvm                             Node Version Manager - Simple bash script to manage multiple active node.js versions
+obsidian                        A powerful knowledge base that works on top of a local folder of plain text Markdown files
+octopi                          A powerful Pacman frontend using Qt libs
+opencl-nvidia                   OpenCL implemention for NVIDIA
+opendesktop-fonts               Chinese TrueType Fonts
+openssh                         SSH protocol implementation for remote login, command execution and file transfer
+pacman-contrib                  Contributed scripts and tools for pacman systems
+pacseek                         A terminal user interface for searching and installing Arch Linux packages
+pamac-aur                       A Gtk frontend, Package Manager based on libalpm with AUR and Appstream support
+pandoc-cli                      Conversion between documentation formats
+partitionmanager                A KDE utility that allows you to manage disks, partitions, and file systems
+paru                            Feature packed AUR helper
+pass                            Stores, retrieves, generates, and synchronizes passwords securely
+pavucontrol                     PulseAudio Volume Control
+perl                            A highly capable, feature-rich programming language
+perl-image-exiftool             Reader and rewriter of EXIF information that supports raw files
+phonon-qt6-vlc                  Phonon VLC backend
+picom                           Lightweight compositor for X11
+pika-backup                     Easy to use backup tool to keep your data safe
+pipewire-alsa                   Low-latency audio/video router and processor - ALSA configuration
+pipewire-pulse                  Low-latency audio/video router and processor - PulseAudio replacement
+pkgfile                         A tool to search for files in official repository packages
+plasma-browser-integration      Components necessary to integrate browsers into the Plasma Desktop
+plasma-desktop                  KDE Plasma Desktop
+plasma-firewall                 Control Panel for your system firewall
+plasma-integration              Qt Platform Theme integration plugins for the Plasma workspaces
+plasma-nm                       Plasma applet written in QML for managing network connections
+plasma-pa                       Plasma applet for audio volume management using PulseAudio
+plasma-systemmonitor            An interface for monitoring system sensors, process information and other system resources
+plasma-thunderbolt              Plasma integration for controlling Thunderbolt devices
+plasma-workspace                KDE Plasma Workspace
+plocate                         Alternative to locate, faster and compatible with mlocate's database.
+plymouth                        Graphical boot splash screen
+plymouth-kcm                    KCM to manage the Plymouth (Boot) theme
+poppler-glib                    Poppler glib bindings
+power-profiles-daemon           Makes power profiles handling available over D-Bus
+powerdevil                      Manages the power consumption settings of a Plasma Shell
+proton-mail-bin                 Proton official desktop application for Proton Mail and Proton Calendar
+proton-vpn-gtk-app              ProtonVPN GTK app, Maintained by Community
+protonmail-bridge               Integrate ProtonMail paid account with any program that supports IMAP and SMTP (Qt desktop application)
+pv                              A terminal-based tool for monitoring the progress of data through a pipeline
+python                          The Python programming language
+python-defusedxml               XML bomb protection for Python stdlib modules
+python-packaging                Core utilities for Python packages
+python-pip                      The PyPA recommended tool for installing Python packages
+python-pipx                     Install and Run Python Applications in Isolated Environments
+python-pywal16                  Generate and change color-schemes on the fly (fork that uses 16 colors)
+python-pywalfox                 Native app used alongside the Pywalfox browser extension
+qt6-wayland                     Provides APIs for Wayland
+ranger                          Simple, vim-like file manager
+rclone                          rsync for cloud storage
+rebuild-detector                Detects which packages need to be rebuilt
+reflector                       A Python 3 module and script to retrieve and filter the latest Pacman mirror list.
+ripgrep                         A search tool that combines the usability of ag with the raw speed of grep
+rmpc                            A beautiful and configurable TUI client for MPD
+rofi                            A window switcher, application launcher and dmenu replacement
+rofi-power-menu                 Configurable power menu mode for Rofi and dmenu
+rsync                           A fast and versatile file copying tool for remote and local files
+rtkit                           Realtime Policy and Watchdog Daemon
+rustdesk-bin                    Yet another remote desktop software, written in Rust. Works out of the box, no configuration required.
+s-nail                          Environment for sending and receiving mail
+sddm                            QML based X11 and Wayland display manager
+sddm-kcm                        KDE Config Module for SDDM
+seahorse                        GNOME application for managing PGP keys
+sg3_utils                       Generic SCSI utilities
+smartmontools                   Control and monitor S.M.A.R.T. enabled ATA and SCSI Hard Drives
+smb4k                           A KDE program that browses samba shares
+snapper                         A tool for managing BTRFS and LVM snapshots
+sof-firmware                    Sound Open Firmware
+sops                            Editor of encrypted files that supports YAML, JSON, ENV, INI and BINARY formats
+spectacle                       KDE screenshot capture utility
+spice                           SPICE server
+spice-gtk                       GTK+ client library for SPICE
+spice-vdagent                   Spice agent for Linux guests
+ssh-tools                       A collection of tools making SSH more convenient
+sshfs                           FUSE client based on the SSH File Transfer Protocol
+starship                        The cross-shell prompt for astronauts
+steam                           Valve's digital software delivery system
+steam-native-runtime            Native replacement for the Steam runtime using system libraries
+stow                            Manage installation of multiple softwares in the same directory tree
+sudo                            Give certain users the ability to run some commands as root
+swaync                          A simple GTK based notification daemon for Sway
+swww                            A Solution to your Wayland Wallpaper Woes
+sysfsutils                      System Utilities Based on Sysfs
+systemd-boot-manager            A simple tool to maintain systemd-boot & systemd-boot entries for CachyOS
+terraform                       HashiCorp tool for building and updating infrastructure as code idempotently
+texinfo                         GNU documentation system for on-line information and printed output
+thunar                          Modern, fast and easy-to-use file manager for Xfce
+thunar-archive-plugin           Adds archive operations to the Thunar file context menus
+thunar-volman                   Automatic management of removable drives and media for Thunar
+thunderbird                     Standalone mail and news reader from mozilla.org
+timeshift                       A system restore utility for Linux
+torbrowser-launcher             Securely and easily download, verify, install, and launch Tor Browser in Linux
+tree                            A directory listing program displaying a depth indented list of files
+ttf-bitstream-vera              Bitstream Vera fonts.
+ttf-dejavu                      Font family based on the Bitstream Vera Fonts with a wider range of characters
+ttf-jetbrains-mono-nerd         Patched font JetBrains Mono from nerd fonts library
+ttf-liberation                  Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New
+ttf-meslo-nerd                  Patched font Meslo LG from nerd fonts library
+ttf-opensans                    Sans-serif typeface commissioned by Google
+tumbler                         Thumbnail service implementing the thumbnail management D-Bus specification
+ufw                             Uncomplicated and easy to use CLI tool for managing a netfilter firewall
+unrar                           The RAR uncompression program
+unzip                           For extracting and viewing files in .zip archives
+upower                          Abstraction for enumerating power devices, listening to device events and querying history and statistics
+usb_modeswitch                  Activating switchable USB devices on Linux.
+usbutils                        A collection of USB tools to query connected USB devices
+uwsm                            A standalone Wayland session manager
+vencord                         The cutest Discord client mod (replaces Vesktop's built-in Vencord)
+veracrypt                       Disk encryption with strong security based on TrueCrypt
+vi                              The original ex/vi text editor
+vim                             Vi Improved, a highly configurable, improved version of the vi text editor
+virt-viewer                     A lightweight interface for interacting with the graphical display of virtualized guest OS.
+virtualbox                      Powerful x86 virtualization for enterprise as well as home use
+virtualbox-guest-iso            The official VirtualBox Guest Additions ISO image
+virtualbox-host-dkms            VirtualBox Host kernel modules sources
+vlc-plugins-all                 Free and open source cross-platform multimedia player and framework - all plugins
+vscodium                        Free/Libre Open Source Software Binaries of VSCode (git build from latest release).
+vulkan-icd-loader               Vulkan Installable Client Driver (ICD) Loader
+w3m                             Text-based Web browser as well as pager
+wakeonlan                       Perl script for waking up computers via Wake-On-LAN magic packets
+wallust                         generate colors from an image
+waybar                          Highly customizable Wayland bar for Sway and Wlroots based compositors
+wazuh-agent                     Wazuh Agent actively protects Arch Linux systems with advanced threat prevention, detection, and response capabilities.
+wget                            Network utility to retrieve files from the web
+which                           A utility to show the full path of commands
+wine-cachyos                    A compatibility layer for running Windows programs, with extra CachyOS flavour
+wine-cachyos-opt                A compatibility layer for running Windows programs, with extra CachyOS flavour (installs under /opt)
+wine-nine                       Gallium Nine Standalone
+winetricks                      Script to install various redistributable runtime libraries in Wine.
+wireless-regdb                  Central Regulatory Domain Database
+wireplumber                     Session / policy manager implementation for PipeWire
+wlogout                         Logout menu for wayland
+wofi                            launcher for wlroots-based wayland compositors
+wpa_supplicant                  A utility providing key negotiation for WPA wireless networks
+xdg-desktop-portal              Desktop integration portals for sandboxed apps
+xdg-desktop-portal-hyprland     xdg-desktop-portal backend for hyprland
+xdg-desktop-portal-kde          A backend implementation for xdg-desktop-portal using Qt/KF5
+xdg-user-dirs                   Manage user directories like ~/Desktop and ~/Music
+xf86-input-libinput             Generic input driver for the X.Org server based on libinput
+xfsprogs                        XFS filesystem utilities
+xl2tpd                          an open source implementation of the L2TP maintained by Xelerance Corporation
+xorg-server                     Xorg X server
+xorg-xdpyinfo                   Display information utility for X
+xorg-xhost                      Server access control program for X
+xorg-xinit                      X.Org initialisation program
+xorg-xinput                     Small commandline tool to configure devices
+xorg-xkill                      Kill a client by its X resource
+xorg-xrandr                     Primitive command line interface to RandR extension
+xournalpp                       Handwriting notetaking software with PDF annotation support
+xsettingsd                      Provides settings to X11 applications via the XSETTINGS specification
+youtube-tui                     An aesthetically pleasing YouTube TUI written in Rust
+yt-dlp-drop-in                  Provide both youtube-dl command and python imports using yt-dlp
+zen-browser-bin                 Performance oriented Firefox-based web browser
+zoxide                          A smarter cd command for your terminal
