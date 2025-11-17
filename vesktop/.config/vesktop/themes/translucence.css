@@ -1,0 +1,68 @@
+/**
+ * @name Translucence
+ * @version 1.0.7
+ * @description A translucent/frosted glass Discord theme
+ * @author CapnKitten
+ *
+ * @website http://github.com/CapnKitten
+ * @source https://github.com/CapnKitten/BetterDiscord/blob/master/Themes/Translucence/css/source.css
+ * @donate https://paypal.me/capnkitten
+ * @invite jzJkA6Z
+ */
+
+@import url(https://capnkitten.github.io/BetterDiscord/Themes/Translucence/css/source.css);
+
+:root {
+  /* APP ELEMENTS */
+  /* reuse your system24 background image if you want */
+  --app-bg: var(--background-image-url, url(https://i.ibb.co/5h7854Wy/bgmVeyt.jpg));
+  --app-blur: 6px;
+  --app-margin: 24px;
+  --app-radius: 8px;
+
+  /* PANEL COLORS – based on system24 bg, but slightly transparent */
+  /* sidebars = more opaque, chat = a bit lighter */
+  --sidebar-color: color-mix(in srgb, var(--bg-4) 80%, transparent);
+  --main-content-color: color-mix(in srgb, var(--bg-4) 60%, transparent);
+
+  /* message bubble background, also semi-transparent */
+  --message-color: color-mix(in srgb, var(--bg-4) 70%, transparent);
+  --message-radius: 8px;
+  --message-padding-top: 8px;
+  --message-padding-side: 8px;
+
+  /* TEXTAREA SETTINGS (keep but base on theme colors) */
+  --textarea-color: 255, 255, 255;
+  --textarea-alpha: 0.06;
+  --textarea-alpha-focus: 0.1;
+  --textarea-text-color: var(--text-1);
+  --textarea-radius: 22px;
+
+  /* CARD SETTINGS */
+  --card-color: color-mix(in srgb, var(--bg-4) 75%, transparent);
+  --card-color-hover: color-mix(in srgb, var(--bg-4) 85%, transparent);
+  --card-color-select: color-mix(in srgb, var(--bg-4) 95%, transparent);
+
+  /* BUTTON SETTINGS */
+  --button-height: 32px;
+  --button-padding: 0 16px;
+  --button-action-color: var(--bg-1);
+  --button-radius: 16px;
+}
+
+/* Make main panels glassy using system24's bg-4 (wal-based) */
+.theme-dark,
+.theme-light {
+  /* main chat + friends list area */
+  --background-primary: color-mix(in srgb, var(--bg-4) 65%, transparent);
+  --background-secondary: color-mix(in srgb, var(--bg-4) 55%, transparent);
+
+  /* e.g. the “Friends / Online / All / Pending” strip + other inner panels */
+  --background-tertiary: color-mix(in srgb, var(--bg-4) 50%, transparent);
+
+  /* floating / context menus a bit more solid */
+  --background-floating: color-mix(in srgb, var(--bg-4) 80%, transparent);
+
+  /* server/channel sidebars */
+  --background-accent: color-mix(in srgb, var(--bg-4) 70%, transparent);
+}

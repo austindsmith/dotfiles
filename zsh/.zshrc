@@ -56,5 +56,4 @@ export KUBECONFIG=~/.kube/k3s.yaml
 export MPD_HOST="127.0.0.1"
 export MPD_PORT="6600"
 
-# Preferred editor for command-line tools (currently commented out)
-# export EDITOR='nvim'
+#
