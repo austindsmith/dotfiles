@@ -1,16 +1,6 @@
 
 # Use this file to store Zsh command history
-HISTFILE=$HOME/.zsh_history
-
-# Number of commands to keep in memory history for the current session
-HISTSIZE=10000
-
-# Number of commands to save to the history file on disk
-SAVEHIST=10000
-
-# Write each command to the history file immediately as it’s executed
-# and share history across all running Zsh sessions
-setopt INC_APPEND_HISTORY SHARE_HISTORY
+eval "$(atuin init zsh)"
 
 # Load and initialize Zsh’s completion system
 autoload -Uz compinit

@@ -1,0 +1,258 @@
+#!/bin/bash
+
+# Rofi VM Manager - Manage virtual machines from rofi
+# Lists VMs from virt-manager and allows starting/connecting to them
+
+# Icons (using Nerd Font icons)
+start_icon='󰐊'
+connect_icon='󰍹'
+shutdown_icon='󰐥'
+reboot_icon='󰜉'
+suspend_icon='󰤄'
+resume_icon='󰤁'
+force_off_icon='󰈸'
+refresh_icon='󰑓'
+
+# Colors for status
+running_color='#a6e3a1'
+stopped_color='#f38ba8'
+
+# Get list of VMs
+# Try system connection first, then session connection
+get_vms() {
+    local vms=""
+    
+    # Try system connection (qemu:///system) - most common for virt-manager
+    if virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        vms=$(virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | sort)
+    # Fallback to session connection (qemu:///session)
+    elif virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        vms=$(virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | sort)
+    # Try default connection
+    elif virsh list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        vms=$(virsh list --all --name 2>/dev/null | grep -v '^$' | sort)
+    fi
+    
+    echo "$vms"
+}
+
+# Get VM status
+# Try system connection first, then session connection
+get_vm_status() {
+    local vm_name="$1"
+    local status=""
+    
+    # Try system connection first
+    status=$(virsh -c qemu:///system dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+    if [ -z "$status" ]; then
+        # Fallback to session connection
+        status=$(virsh -c qemu:///session dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+    fi
+    if [ -z "$status" ]; then
+        # Fallback to default connection
+        status=$(virsh dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+    fi
+    
+    echo "$status"
+}
+
+# Determine which connection URI to use
+get_connection_uri() {
+    # Try system connection first
+    if virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        echo "qemu:///system"
+    # Fallback to session connection
+    elif virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        echo "qemu:///session"
+    else
+        echo ""  # Use default
+    fi
+}
+
+# Format VM list with status
+format_vm_list() {
+    local vms
+    vms=$(get_vms)
+    
+    if [ -z "$vms" ]; then
+        echo "No VMs found"
+        return 1
+    fi
+    
+    while IFS= read -r vm; do
+        if [ -n "$vm" ]; then
+            status=$(get_vm_status "$vm")
+            if [[ "$status" == "running" ]]; then
+                echo -e "<span color='$running_color'>●</span> $vm"
+            else
+                echo -e "<span color='$stopped_color'>○</span> $vm"
+            fi
+        fi
+    done <<< "$vms"
+}
+
+# Show VM actions menu
+show_vm_actions() {
+    local vm_name="$1"
+    local status=$(get_vm_status "$vm_name")
+    
+    local actions=""
+    
+    if [[ "$status" == "running" ]]; then
+        actions="${connect_icon} Connect\n"
+        actions+="${shutdown_icon} Shutdown\n"
+        actions+="${reboot_icon} Reboot\n"
+        actions+="${suspend_icon} Suspend\n"
+        actions+="${force_off_icon} Force Off"
+    else
+        actions="${start_icon} Start\n"
+        if [[ "$status" == "paused" ]]; then
+            actions+="${resume_icon} Resume"
+        fi
+    fi
+    
+    echo -e "$actions" | rofi -dmenu \
+        -p "VM: $vm_name" \
+        -mesg "Status: $status" \
+        -theme ~/.config/rofi/style.rasi
+}
+
+# Execute VM action
+execute_action() {
+    local vm_name="$1"
+    local action="$2"
+    local conn_uri
+    conn_uri=$(get_connection_uri)
+    
+    # Build virsh command with connection URI if needed
+    local virsh_cmd="virsh"
+    if [ -n "$conn_uri" ]; then
+        virsh_cmd="virsh -c $conn_uri"
+    fi
+    
+    case "$action" in
+        *"Connect"*)
+            # Try virt-viewer first, fallback to virt-manager
+            if command -v virt-viewer &> /dev/null; then
+                if [ -n "$conn_uri" ]; then
+                    virt-viewer --connect "$conn_uri" "$vm_name" &
+                else
+                    virt-viewer "$vm_name" &
+                fi
+            elif command -v virt-manager &> /dev/null; then
+                if [ -n "$conn_uri" ]; then
+                    virt-manager --connect "$conn_uri" --show-domain-console "$vm_name" &
+                else
+                    virt-manager --connect qemu:///system --show-domain-console "$vm_name" &
+                fi
+            else
+                notify-send "VM Manager" "virt-viewer or virt-manager not found"
+            fi
+            ;;
+        *"Start"*)
+            $virsh_cmd start "$vm_name" 2>&1 | while read -r line; do
+                notify-send "VM Manager" "$line"
+            done
+            ;;
+        *"Shutdown"*)
+            $virsh_cmd shutdown "$vm_name" 2>&1 | while read -r line; do
+                notify-send "VM Manager" "$line"
+            done
+            ;;
+        *"Reboot"*)
+            $virsh_cmd reboot "$vm_name" 2>&1 | while read -r line; do
+                notify-send "VM Manager" "$line"
+            done
+            ;;
+        *"Suspend"*)
+            $virsh_cmd suspend "$vm_name" 2>&1 | while read -r line; do
+                notify-send "VM Manager" "$line"
+            done
+            ;;
+        *"Resume"*)
+            $virsh_cmd resume "$vm_name" 2>&1 | while read -r line; do
+                notify-send "VM Manager" "$line"
+            done
+            ;;
+        *"Force Off"*)
+            # Confirmation for destructive action
+            local confirm=$(echo -e "Yes\nNo" | rofi -dmenu \
+                -p "Force off $vm_name?" \
+                -mesg "This will forcefully power off the VM. Continue?" \
+                -theme ~/.config/rofi/style.rasi)
+            if [[ "$confirm" == "Yes" ]]; then
+                $virsh_cmd destroy "$vm_name" 2>&1 | while read -r line; do
+                    notify-send "VM Manager" "$line"
+                done
+            fi
+            ;;
+    esac
+}
+
+# Main execution
+main() {
+    # Check if virsh is available
+    if ! command -v virsh &> /dev/null; then
+        notify-send "VM Manager" "virsh command not found. Please install libvirt."
+        exit 1
+    fi
+    
+    # Show VM list
+    local vm_list
+    vm_list=$(format_vm_list)
+    
+    if [ $? -ne 0 ] || [ -z "$vm_list" ]; then
+        # Show a more helpful error message in rofi
+        local error_msg="No VMs found.\n\nMake sure:\n• VMs are created in virt-manager\n• libvirt service is running\n• You have proper permissions"
+        echo -e "$error_msg" | rofi -dmenu -p "VM Manager" -theme ~/.config/rofi/style.rasi
+        exit 0
+    fi
+    
+    # Select VM (strip HTML tags for selection)
+    local selected
+    selected=$(echo -e "$vm_list" | rofi -dmenu \
+        -p "Virtual Machines" \
+        -mesg "Select a VM to manage" \
+        -markup-rows \
+        -theme ~/.config/rofi/style.rasi)
+    
+    if [ -z "$selected" ]; then
+        exit 0
+    fi
+    
+    # Extract VM name (remove status indicator, color tags, and any leading/trailing whitespace)
+    local vm_name
+    vm_name=$(echo "$selected" | sed -E 's/<[^>]*>//g' | sed -E 's/^[●○]\s*//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+    
+    if [ -z "$vm_name" ]; then
+        exit 0
+    fi
+    
+    # Verify VM exists (safety check)
+    local conn_uri
+    conn_uri=$(get_connection_uri)
+    local check_cmd="virsh"
+    if [ -n "$conn_uri" ]; then
+        check_cmd="virsh -c $conn_uri"
+    fi
+    
+    if ! $check_cmd dominfo "$vm_name" &>/dev/null; then
+        notify-send "VM Manager" "VM '$vm_name' not found"
+        exit 1
+    fi
+    
+    # Show actions for selected VM
+    local action
+    action=$(show_vm_actions "$vm_name")
+    
+    if [ -z "$action" ]; then
+        exit 0
+    fi
+    
+    # Execute the action
+    execute_action "$vm_name" "$action"
+}
+
+# Run main function
+main
+

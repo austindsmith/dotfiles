@@ -1,0 +1,102 @@
+#!/bin/bash
+
+# Rofi VM Manager modi
+# This script is called by rofi in modi mode to list VMs
+
+# Get list of VMs
+get_vms() {
+    local vms=""
+    
+    # Try system connection first
+    if virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        vms=$(virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | sort)
+    # Fallback to session connection
+    elif virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        vms=$(virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | sort)
+    fi
+    
+    echo "$vms"
+}
+
+# Get VM status
+get_vm_status() {
+    local vm_name="$1"
+    local status=""
+    
+    # Try system connection first
+    status=$(virsh -c qemu:///system dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+    if [ -z "$status" ]; then
+        # Fallback to session connection
+        status=$(virsh -c qemu:///session dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+    fi
+    
+    echo "$status"
+}
+
+# Format VM for display
+format_vm() {
+    local vm_name="$1"
+    local status=$(get_vm_status "$vm_name")
+    
+    if [[ "$status" == "running" ]]; then
+        echo "● $vm_name (running)"
+    else
+        echo "○ $vm_name (stopped)"
+    fi
+}
+
+# Check ROFI_RETV to determine the context
+# 0: Initial call to list items
+# 1: Selection accepted (Enter pressed)
+# 2: Selection accepted with custom keybinding
+# 10-28: Custom keybindings
+
+# Debug: Always log what we receive at the start
+echo "$(date): rofi-vm-modi START - ROFI_RETV=${ROFI_RETV:-not set}, ROFI_INFO=${ROFI_INFO:-not set}, args: '$@'" >> /tmp/rofi-vm-debug.log
+
+# Check if this is a selection (ROFI_RETV == 1) or initial list (ROFI_RETV == 0 or not set)
+if [[ "${ROFI_RETV:-0}" != "1" ]] && [[ "${ROFI_RETV:-0}" != "2" ]] && [[ "$1" != "--help" ]] && [[ "$1" != "--list" ]] && [[ -n "$1" ]]; then
+    # If we have an argument but ROFI_RETV is not 1 or 2, it might be a selection
+    # Some rofi versions might not set ROFI_RETV correctly
+    echo "$(date): rofi-vm-modi - treating as selection (has arg but ROFI_RETV != 1)" >> /tmp/rofi-vm-debug.log
+    # Fall through to selection handling
+elif [[ "${ROFI_RETV:-0}" == "0" ]] || [[ "$1" == "--help" ]] || [[ "$1" == "--list" ]] || [[ -z "$1" ]]; then
+    # Initial call - list VMs
+    vms=$(get_vms)
+    if [ -z "$vms" ]; then
+        # Don't output anything if no VMs - rofi will show empty list
+        exit 0
+    fi
+    
+    while IFS= read -r vm; do
+        if [ -n "$vm" ]; then
+            format_vm "$vm"
+        fi
+    done <<< "$vms"
+    exit 0
+fi
+
+# Selection was made (ROFI_RETV == 1 or 2)
+# Rofi passes the selected text as the first argument
+selected="$1"
+
+# Debug: log to a file to see if this is being called
+echo "$(date): rofi-vm-modi called with ROFI_RETV=${ROFI_RETV}, selected='$selected'" >> /tmp/rofi-vm-debug.log
+
+# Extract VM name (remove status indicator and status text)
+vm_name=$(echo "$selected" | sed -E 's/^[●○]\s*//' | sed -E 's/\s*\(.*\)$//' | xargs)
+
+echo "$(date): Extracted VM name: '$vm_name'" >> /tmp/rofi-vm-debug.log
+
+if [ -z "$vm_name" ]; then
+    echo "$(date): VM name is empty, exiting" >> /tmp/rofi-vm-debug.log
+    exit 0
+fi
+
+# Show action menu using the actions script
+echo "$(date): Calling rofi-vm-actions for '$vm_name'" >> /tmp/rofi-vm-debug.log
+
+# Execute the actions script directly - it will show the rofi menu
+# Run it in the background so rofi can close first, but ensure it has the right environment
+bash /home/austin/.dotfiles/rofi/.config/rofi/dev/rofi-vm-actions "$vm_name" &
+

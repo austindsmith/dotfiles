@@ -1,8 +1,8 @@
 configuration {
   // General Settings
-  modi: "drun,run,filebrowser";
+  modi: "drun,run,filebrowser,clipboard:/home/austin/.local/share/cliphist/contrib/cliphist-rofi-img,vm:/home/austin/.dotfiles/rofi/.config/rofi/dev/rofi-vm-modi,powermenu:/home/austin/.dotfiles/rofi/.config/rofi/dev/rofi-powermenu";
   case-sensitive: false;
-  cycle: false;
+  cycle: true;
   filter: "";
   scroll-method: 0;
   normalize-match: true;
@@ -11,6 +11,10 @@ configuration {
   font: "Maple Mono NF 10.5";
   steal-focus: false;
   hover-select: true;
+  
+  // Mode switching (using Alt+Arrow keys to avoid conflicts)
+  kb-mode-next: "Alt+Right,Alt+l";
+  kb-mode-previous: "Alt+Left,Alt+h";
 
   // Keybindings
   kb-row-up: "Control+k,Up";
@@ -73,6 +77,9 @@ configuration {
   display-combi: "Combi";
   display-keys: "Keys";
   display-filebrowser: "Files";
+  display-clipboard: "Clipboard";
+  display-vm: "VMs";
+  display-powermenu: "Power";
 
   // Misc setting
   terminal: "rofi-sensible-terminal";
