@@ -1,9 +1,15 @@
 #!/bin/bash
 
-# Rofi VM Manager - Unified script for both standalone and rofi modi usage
-# Lists VMs from virt-manager and allows starting/connecting to them
+# Rofi VM Manager (script modi, 2-step menu: VM -> actions)
 
-# Icons (using Nerd Font icons)
+DEBUG_LOG="/tmp/rofi-vm-debug.log"
+STATE_FILE="${XDG_RUNTIME_DIR:-/tmp}/rofi-vm.state"
+
+log_debug() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $*" >> "$DEBUG_LOG"
+}
+
+# Icons (Nerd Fonts)
 start_icon='󰐊'
 connect_icon='󰍹'
 shutdown_icon='󰐥'
@@ -12,344 +18,256 @@ suspend_icon='󰤄'
 resume_icon='󰤁'
 force_off_icon='󰈸'
 
-# Colors for status
 running_color='#a6e3a1'
 stopped_color='#f38ba8'
 
-# Get list of VMs
+# --- libvirt helpers --------------------------------------------------------
+
 get_vms() {
     local vms=""
-    
-    # Try system connection first
+
     if virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
         vms=$(virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | sort)
-    # Fallback to session connection
     elif virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
         vms=$(virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | sort)
-    # Try default connection
     elif virsh list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
         vms=$(virsh list --all --name 2>/dev/null | grep -v '^$' | sort)
     fi
-    
+
     echo "$vms"
 }
 
-# Get VM status
 get_vm_status() {
     local vm_name="$1"
     local status=""
-    
-    # Try system connection first
-    status=$(virsh -c qemu:///system dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+
+    status=$(virsh -c qemu:///system dominfo "$vm_name" 2>/dev/null | awk '/State:/ {print $2}')
     if [ -z "$status" ]; then
-        # Fallback to session connection
-        status=$(virsh -c qemu:///session dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+        status=$(virsh -c qemu:///session dominfo "$vm_name" 2>/dev/null | awk '/State:/ {print $2}')
     fi
     if [ -z "$status" ]; then
-        # Fallback to default connection
-        status=$(virsh dominfo "$vm_name" 2>/dev/null | grep "State:" | awk '{print $2}')
+        status=$(virsh dominfo "$vm_name" 2>/dev/null | awk '/State:/ {print $2}')
     fi
-    
+
     echo "$status"
 }
 
-# Get connection URI
 get_connection_uri() {
-    # Try system connection first
     if virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
         echo "qemu:///system"
-    # Fallback to session connection
     elif virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
         echo "qemu:///session"
     else
-        echo ""  # Use default
+        echo ""
     fi
 }
 
-# Format VM for display (for rofi modi - simple format)
-format_vm_simple() {
-    local vm_name="$1"
-    local status=$(get_vm_status "$vm_name")
-    
-    if [[ "$status" == "running" ]]; then
-        echo "● $vm_name (running)"
-    else
-        echo "○ $vm_name (stopped)"
-    fi
-}
+# --- rofi output helpers ----------------------------------------------------
 
-# Format VM list with status (for standalone - with HTML markup)
-format_vm_list() {
+print_vm_list() {
+    # metadata for rofi (script mode)
+    printf '\0prompt\x1f%s\n' "VMs"
+    printf '\0mesg\x1f%s\n' "Select a VM to manage"
+    printf '\0markup-rows\x1ftrue\n'
+    printf '\0no-custom\x1ftrue\n'
+
     local vms
     vms=$(get_vms)
-    
     if [ -z "$vms" ]; then
-        echo "No VMs found"
-        return 1
+        return
     fi
-    
+
     while IFS= read -r vm; do
-        if [ -n "$vm" ]; then
-            status=$(get_vm_status "$vm")
-            if [[ "$status" == "running" ]]; then
-                echo -e "<span color='$running_color'>●</span> $vm"
-            else
-                echo -e "<span color='$stopped_color'>○</span> $vm"
-            fi
+        [ -z "$vm" ] && continue
+        local status
+        status=$(get_vm_status "$vm")
+
+        if [[ "$status" == "running" ]]; then
+            # colored bullet, plus plain status
+            printf "<span color='%s'>●</span> %s (running)\n" "$running_color" "$vm"
+        else
+            printf "<span color='%s'>○</span> %s (stopped)\n" "$stopped_color" "$vm"
         fi
     done <<< "$vms"
 }
 
-# Show VM actions menu
-show_vm_actions() {
+print_actions_for_vm() {
     local vm_name="$1"
-    local status=$(get_vm_status "$vm_name")
-    
-    local actions=""
-    
+    local status
+    status=$(get_vm_status "$vm_name")
+
+    printf '\0prompt\x1f%s\n' "VM: $vm_name"
+    printf '\0mesg\x1f%s\n' "Status: $status"
+    printf '\0no-custom\x1ftrue\n'
+    printf '\0markup-rows\x1ffalse\n'
+
     if [[ "$status" == "running" ]]; then
-        actions="${connect_icon} Connect\n"
-        actions+="${shutdown_icon} Shutdown\n"
-        actions+="${reboot_icon} Reboot\n"
-        actions+="${suspend_icon} Suspend\n"
-        actions+="${force_off_icon} Force Off"
+        printf "%s Connect\n" "$connect_icon"
+        printf "%s Shutdown\n" "$shutdown_icon"
+        printf "%s Reboot\n" "$reboot_icon"
+        printf "%s Suspend\n" "$suspend_icon"
+        printf "%s Force Off\n" "$force_off_icon"
     else
-        actions="${start_icon} Start\n"
+        printf "%s Start\n" "$start_icon"
         if [[ "$status" == "paused" ]]; then
-            actions+="${resume_icon} Resume"
+            printf "%s Resume\n" "$resume_icon"
         fi
     fi
-    
-    echo -e "$actions" | rofi -dmenu \
-        -p "VM: $vm_name" \
-        -mesg "Status: $status" \
-        -theme ~/.config/rofi/style.rasi \
-        -show-icons
 }
 
-# Execute VM action
+# --- action execution -------------------------------------------------------
+
 execute_action() {
     local vm_name="$1"
     local action="$2"
     local conn_uri
     conn_uri=$(get_connection_uri)
-    
-    # Build virsh command with connection URI if needed
-    local virsh_cmd="virsh"
-    if [ -n "$conn_uri" ]; then
-        virsh_cmd="virsh -c $conn_uri"
-    fi
-    
+
+    local virsh_cmd=(virsh)
+    [ -n "$conn_uri" ] && virsh_cmd=(virsh -c "$conn_uri")
+
+    log_debug "execute_action: vm='$vm_name', action='$action', conn_uri='$conn_uri'"
+
     case "$action" in
         *"Connect"*)
-            # Try virt-viewer first, fallback to virt-manager
-            if command -v virt-viewer &> /dev/null; then
+            log_debug "Connect requested for '$vm_name' (conn_uri='$conn_uri')"
+            if command -v virt-viewer &>/dev/null; then
                 if [ -n "$conn_uri" ]; then
-                    virt-viewer --connect "$conn_uri" "$vm_name" &
+                    nohup virt-viewer --connect "$conn_uri" "$vm_name" \
+                        >/dev/null 2>&1 </dev/null &
                 else
-                    virt-viewer "$vm_name" &
+                    nohup virt-viewer "$vm_name" \
+                        >/dev/null 2>&1 </dev/null &
                 fi
-            elif command -v virt-manager &> /dev/null; then
+                log_debug "Started virt-viewer for '$vm_name'"
+            elif command -v virt-manager &>/dev/null; then
                 if [ -n "$conn_uri" ]; then
-                    virt-manager --connect "$conn_uri" --show-domain-console "$vm_name" &
+                    nohup virt-manager --connect "$conn_uri" --show-domain-console "$vm_name" \
+                        >/dev/null 2>&1 </dev/null &
                 else
-                    virt-manager --connect qemu:///system --show-domain-console "$vm_name" &
+                    nohup virt-manager --connect qemu:///system --show-domain-console "$vm_name" \
+                        >/dev/null 2>&1 </dev/null &
                 fi
+                log_debug "Started virt-manager for '$vm_name'"
             else
+                log_debug "Neither virt-viewer nor virt-manager found"
                 notify-send "VM Manager" "virt-viewer or virt-manager not found"
             fi
             ;;
+
         *"Start"*)
-            output=$($virsh_cmd start "$vm_name" 2>&1)
-            if [ $? -eq 0 ]; then
+            if "${virsh_cmd[@]}" start "$vm_name" &>>"$DEBUG_LOG"; then
                 notify-send "VM Manager" "Started $vm_name"
             else
-                notify-send "VM Manager" "Failed to start $vm_name: $output"
+                notify-send "VM Manager" "Failed to start $vm_name"
             fi
             ;;
         *"Shutdown"*)
-            output=$($virsh_cmd shutdown "$vm_name" 2>&1)
-            if [ $? -eq 0 ]; then
+            if "${virsh_cmd[@]}" shutdown "$vm_name" &>>"$DEBUG_LOG"; then
                 notify-send "VM Manager" "Shutting down $vm_name"
             else
-                notify-send "VM Manager" "Failed to shutdown $vm_name: $output"
+                notify-send "VM Manager" "Failed to shutdown $vm_name"
             fi
             ;;
         *"Reboot"*)
-            output=$($virsh_cmd reboot "$vm_name" 2>&1)
-            if [ $? -eq 0 ]; then
+            if "${virsh_cmd[@]}" reboot "$vm_name" &>>"$DEBUG_LOG"; then
                 notify-send "VM Manager" "Rebooting $vm_name"
             else
-                notify-send "VM Manager" "Failed to reboot $vm_name: $output"
+                notify-send "VM Manager" "Failed to reboot $vm_name"
             fi
             ;;
         *"Suspend"*)
-            output=$($virsh_cmd suspend "$vm_name" 2>&1)
-            if [ $? -eq 0 ]; then
+            if "${virsh_cmd[@]}" suspend "$vm_name" &>>"$DEBUG_LOG"; then
                 notify-send "VM Manager" "Suspended $vm_name"
             else
-                notify-send "VM Manager" "Failed to suspend $vm_name: $output"
+                notify-send "VM Manager" "Failed to suspend $vm_name"
             fi
             ;;
         *"Resume"*)
-            output=$($virsh_cmd resume "$vm_name" 2>&1)
-            if [ $? -eq 0 ]; then
+            if "${virsh_cmd[@]}" resume "$vm_name" &>>"$DEBUG_LOG"; then
                 notify-send "VM Manager" "Resumed $vm_name"
             else
-                notify-send "VM Manager" "Failed to resume $vm_name: $output"
+                notify-send "VM Manager" "Failed to resume $vm_name"
             fi
             ;;
         *"Force Off"*)
-            # Confirmation for destructive action
-            local confirm=$(echo -e "Yes\nNo" | rofi -dmenu \
-                -p "Force off $vm_name?" \
-                -mesg "This will forcefully power off the VM. Continue?" \
-                -theme ~/.config/rofi/style.rasi)
-            if [[ "$confirm" == "Yes" ]]; then
-                output=$($virsh_cmd destroy "$vm_name" 2>&1)
-                if [ $? -eq 0 ]; then
-                    notify-send "VM Manager" "Force stopped $vm_name"
-                else
-                    notify-send "VM Manager" "Failed to force stop $vm_name: $output"
-                fi
+            if "${virsh_cmd[@]}" destroy "$vm_name" &>>"$DEBUG_LOG"; then
+                notify-send "VM Manager" "Force stopped $vm_name"
+            else
+                notify-send "VM Manager" "Failed to force stop $vm_name"
             fi
             ;;
     esac
 }
 
-# Handle VM selection - show actions and execute
-handle_vm_selection() {
-    local selected="$1"
-    local is_rofi_modi="$2"  # Flag to indicate if called from rofi modi
-    
-    # Extract VM name (remove status indicator and status text)
-    local vm_name
-    vm_name=$(echo "$selected" | sed -E 's/^[●○]\s*//' | sed -E 's/\s*\(.*\)$//' | xargs)
-    
-    if [ -z "$vm_name" ]; then
-        exit 0
-    fi
-    
-    # Verify VM exists
-    local conn_uri
-    conn_uri=$(get_connection_uri)
-    local check_cmd="virsh"
-    if [ -n "$conn_uri" ]; then
-        check_cmd="virsh -c $conn_uri"
-    fi
-    
-    if ! $check_cmd dominfo "$vm_name" &>/dev/null; then
-        notify-send "VM Manager" "VM '$vm_name' not found"
-        exit 1
-    fi
-    
-    # Always show action menu, but handle rofi modi differently
-    if [[ "$is_rofi_modi" == "true" ]]; then
-        # Rofi modi mode: run action menu in background after small delay
-        # This allows the current rofi to close first
-        (
-            sleep 0.2
-            action=$(show_vm_actions "$vm_name")
-            if [ -n "$action" ]; then
-                execute_action "$vm_name" "$action"
-            fi
-        ) &
-        # Exit immediately to let rofi close
-        exit 0
+# --- state management -------------------------------------------------------
+
+load_state() {
+    if [[ -f "$STATE_FILE" ]]; then
+        # shellcheck disable=SC1090
+        . "$STATE_FILE"
     else
-        # Standalone mode: show action menu directly
-        local action
-        action=$(show_vm_actions "$vm_name")
-        
-        if [ -z "$action" ]; then
-            exit 0
-        fi
-        
-        # Execute the action
-        execute_action "$vm_name" "$action"
+        stage="list"
+        vm_name=""
     fi
 }
 
-# Main execution logic
-# Check if this is being called as a rofi modi script
-if [[ "${ROFI_RETV:-0}" == "1" ]] || [[ "${ROFI_RETV:-0}" == "2" ]]; then
-    # Rofi modi: Selection was made (Enter pressed)
-    # Rofi passes the selected text as the first argument
-    handle_vm_selection "$1" "true"
+save_state_actions() {
+    local vm="$1"
+    cat >"$STATE_FILE" <<EOF
+stage="actions"
+vm_name="$(printf '%s\n' "$vm" | sed 's/"/\\"/g')"
+EOF
+}
+
+clear_state() {
+    rm -f "$STATE_FILE"
+}
+
+# --- selection parsing ------------------------------------------------------
+
+extract_vm_name_from_line() {
+    # strip markup tags, bullets, and trailing " (status)"
+    sed -E 's/<[^>]*>//g' \
+    | sed -E 's/^[●○]\s*//' \
+    | sed -E 's/\s*\(.*\)$//' \
+    | xargs
+}
+
+# --- main -------------------------------------------------------------------
+
+log_debug ""
+log_debug "=== rofi-vm start ==="
+log_debug "ROFI_RETV='${ROFI_RETV:-unset}', args='$*'"
+
+load_state
+log_debug "Loaded state: stage='$stage', vm_name='$vm_name'"
+
+if [[ "${ROFI_RETV:-0}" == "0" ]]; then
+    # Initial call: reset to VM list every time rofi opens
+    log_debug "ROFI_RETV=0 -> print VM list"
+    clear_state
+    print_vm_list
     exit 0
-elif [[ "$1" == "--help" ]] || [[ "$1" == "--list" ]] || [[ -z "$1" ]] || [[ "${ROFI_RETV:-0}" == "0" ]]; then
-    # Rofi modi: Initial call to list items, or standalone mode
-    # Check if virsh is available
-    if ! command -v virsh &> /dev/null; then
-        if [[ -n "${ROFI_RETV}" ]]; then
-            # Called from rofi modi - just exit
-            exit 0
-        else
-            # Standalone mode - show error
-            notify-send "VM Manager" "virsh command not found. Please install libvirt."
-            exit 1
-        fi
-    fi
+fi
+
+# ROFI_RETV != 0: user selected an entry
+selection="$1"
+log_debug "Selection raw: '$selection'"
+
+if [[ "$stage" == "list" ]]; then
+    # First selection: user chose a VM; go to actions menu
+    vm_selected=$(echo "$selection" | extract_vm_name_from_line)
+    log_debug "VM selected: '$vm_selected'"
     
-    # List VMs
-    local vms
-    vms=$(get_vms)
-    
-    if [ -z "$vms" ]; then
-        if [[ -n "${ROFI_RETV}" ]]; then
-            # Called from rofi modi - just exit (empty list)
-            exit 0
-        else
-            # Standalone mode - show error in rofi
-            local error_msg="No VMs found.\n\nMake sure:\n• VMs are created in virt-manager\n• libvirt service is running\n• You have proper permissions"
-            echo -e "$error_msg" | rofi -dmenu -p "VM Manager" -theme ~/.config/rofi/style.rasi
-            exit 0
-        fi
-    fi
-    
-    # Output VM list
-    if [[ -n "${ROFI_RETV}" ]]; then
-        # Rofi modi mode - simple format
-        while IFS= read -r vm; do
-            if [ -n "$vm" ]; then
-                format_vm_simple "$vm"
-            fi
-        done <<< "$vms"
-    else
-        # Standalone mode - use full rofi menu with markup
-        local vm_list
-        vm_list=$(format_vm_list)
-        
-        if [ $? -ne 0 ] || [ -z "$vm_list" ]; then
-            local error_msg="No VMs found.\n\nMake sure:\n• VMs are created in virt-manager\n• libvirt service is running\n• You have proper permissions"
-            echo -e "$error_msg" | rofi -dmenu -p "VM Manager" -theme ~/.config/rofi/style.rasi
-            exit 0
-        fi
-        
-        # Select VM (strip HTML tags for selection)
-        local selected
-        selected=$(echo -e "$vm_list" | rofi -dmenu \
-            -p "Virtual Machines" \
-            -mesg "Select a VM to manage" \
-            -markup-rows \
-            -theme ~/.config/rofi/style.rasi)
-        
-        if [ -z "$selected" ]; then
-            exit 0
-        fi
-        
-        # Extract VM name (remove status indicator, color tags, and any leading/trailing whitespace)
-        local vm_name
-        vm_name=$(echo "$selected" | sed -E 's/<[^>]*>//g' | sed -E 's/^[●○]\s*//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-        
-        if [ -z "$vm_name" ]; then
-            exit 0
-        fi
-        
-        # Handle the selection
-        handle_vm_selection "$vm_name" "false"
-    fi
-else
-    # Called with an argument but not from rofi modi - treat as VM selection
-    handle_vm_selection "$1" "false"
+    # Save state and show actions for this VM
+    save_state_actions "$vm_selected"
+    print_actions_for_vm "$vm_selected"
+    exit 0
+elif [[ "$stage" == "actions" ]]; then
+    # Second selection: user chose an action; execute it
+    log_debug "Action selected: '$selection' for VM: '$vm_name'"
+    clear_state
+    execute_action "$vm_name" "$selection"
+    exit 0
 fi
