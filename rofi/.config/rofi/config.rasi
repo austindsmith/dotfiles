@@ -1,6 +1,6 @@
 configuration {
   // General Settings
-  modi: "drun,run,filebrowser,clipboard:/home/austin/.local/share/cliphist/contrib/cliphist-rofi-img,vm:/home/austin/.dotfiles/rofi/.config/rofi/dev/rofi-vm-modi,powermenu:/home/austin/.dotfiles/rofi/.config/rofi/dev/rofi-powermenu";
+  modi: "drun,run,filebrowser,clipboard:/home/austin/.local/share/cliphist/contrib/cliphist-rofi-img,vm:/home/austin/.dotfiles/rofi/.config/rofi/dev/rofi-vm,powermenu:/home/austin/.dotfiles/rofi/.config/rofi/dev/rofi-powermenu";
   case-sensitive: false;
   cycle: true;
   filter: "";
