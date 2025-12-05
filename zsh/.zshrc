@@ -55,3 +55,6 @@ case "$TERM" in
         export TERM
         ;;
 esac
+
+
+alias kssh='kitty +kitten ssh'
