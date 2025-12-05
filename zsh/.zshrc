@@ -47,3 +47,11 @@ export MPD_HOST="127.0.0.1"
 export MPD_PORT="6600"
 
 #
+export KUBECONFIG=~/.kube/config
+
+case "$TERM" in
+    xterm-kitty|tmux-256color|alacritty|foot|ghostty)
+        TERM=xterm-256color
+        export TERM
+        ;;
+esac

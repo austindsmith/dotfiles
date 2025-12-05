@@ -4,6 +4,9 @@
 
 DEBUG_LOG="/tmp/rofi-vm-debug.log"
 STATE_FILE="${XDG_RUNTIME_DIR:-/tmp}/rofi-vm.state"
+CACHE_FILE="${XDG_RUNTIME_DIR:-/tmp}/rofi-vm.cache"
+CACHE_TIMEOUT=30  # Cache VM info for 30 seconds (longer cache)
+FAST_MODE=true    # Enable fast mode optimizations
 
 log_debug() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $*" >> "$DEBUG_LOG"
@@ -23,36 +26,130 @@ stopped_color='#f38ba8'
 
 # --- libvirt helpers --------------------------------------------------------
 
-get_vms() {
-    local vms=""
-
-    if virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
-        vms=$(virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | sort)
-    elif virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
-        vms=$(virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | sort)
-    elif virsh list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
-        vms=$(virsh list --all --name 2>/dev/null | grep -v '^$' | sort)
+# Cache management
+is_cache_valid() {
+    if [[ ! -f "$CACHE_FILE" ]]; then
+        return 1
     fi
+    
+    local cache_age
+    cache_age=$(($(date +%s) - $(stat -c %Y "$CACHE_FILE" 2>/dev/null || echo 0)))
+    [[ $cache_age -lt $CACHE_TIMEOUT ]]
+}
 
-    echo "$vms"
+get_vms_cached() {
+    if is_cache_valid; then
+        log_debug "Using cached VM data"
+        grep "^VM:" "$CACHE_FILE" | cut -d: -f2
+        return
+    fi
+    
+    log_debug "Refreshing VM cache (background mode: $FAST_MODE)"
+    
+    if [[ "$FAST_MODE" == "true" ]]; then
+        # Fast mode: Start background refresh and return cached data if available
+        refresh_cache_background &
+        
+        # If we have any cached data (even expired), use it for instant response
+        if [[ -f "$CACHE_FILE" ]]; then
+            log_debug "Using stale cache for fast response"
+            grep "^VM:" "$CACHE_FILE" | cut -d: -f2
+            return
+        fi
+    fi
+    
+    # Fallback: synchronous refresh (only if no cache exists at all)
+    refresh_cache_sync
+    grep "^VM:" "$CACHE_FILE" 2>/dev/null | cut -d: -f2
+}
+
+refresh_cache_background() {
+    # Background refresh - don't block rofi
+    (
+        refresh_cache_sync
+        log_debug "Background cache refresh completed"
+    ) &
+}
+
+refresh_cache_sync() {
+    local temp_cache="${CACHE_FILE}.tmp"
+    
+    # Try different connection URIs - use timeout to prevent hanging
+    local conn_uri=""
+    local vms=""
+    
+    # Use timeout to prevent slow libvirt calls from blocking
+    if timeout 2s virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        conn_uri="qemu:///system"
+        vms=$(timeout 3s virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | sort)
+    elif timeout 2s virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        conn_uri="qemu:///session"
+        vms=$(timeout 3s virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | sort)
+    elif timeout 2s virsh list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
+        conn_uri=""
+        vms=$(timeout 3s virsh list --all --name 2>/dev/null | grep -v '^$' | sort)
+    fi
+    
+    # Build cache atomically
+    {
+        echo "CONN_URI:$conn_uri"
+        while IFS= read -r vm; do
+            if [[ -n "$vm" ]]; then
+                local status
+                if [[ -n "$conn_uri" ]]; then
+                    status=$(timeout 2s virsh -c "$conn_uri" dominfo "$vm" 2>/dev/null | awk '/State:/ {print $2}')
+                else
+                    status=$(timeout 2s virsh dominfo "$vm" 2>/dev/null | awk '/State:/ {print $2}')
+                fi
+                echo "VM:$vm:${status:-unknown}"
+            fi
+        done <<< "$vms"
+    } > "$temp_cache" && mv "$temp_cache" "$CACHE_FILE"
+}
+
+get_vms() {
+    get_vms_cached
 }
 
 get_vm_status() {
     local vm_name="$1"
-    local status=""
-
-    status=$(virsh -c qemu:///system dominfo "$vm_name" 2>/dev/null | awk '/State:/ {print $2}')
-    if [ -z "$status" ]; then
-        status=$(virsh -c qemu:///session dominfo "$vm_name" 2>/dev/null | awk '/State:/ {print $2}')
+    
+    # Try to get from cache first
+    if is_cache_valid; then
+        local cached_status
+        cached_status=$(grep "^VM:$vm_name:" "$CACHE_FILE" 2>/dev/null | cut -d: -f3)
+        if [[ -n "$cached_status" ]]; then
+            echo "$cached_status"
+            return
+        fi
     fi
-    if [ -z "$status" ]; then
+    
+    # Fallback to live query
+    local conn_uri
+    conn_uri=$(get_connection_uri)
+    
+    local status=""
+    if [[ -n "$conn_uri" ]]; then
+        status=$(virsh -c "$conn_uri" dominfo "$vm_name" 2>/dev/null | awk '/State:/ {print $2}')
+    else
         status=$(virsh dominfo "$vm_name" 2>/dev/null | awk '/State:/ {print $2}')
     fi
-
+    
     echo "$status"
 }
 
 get_connection_uri() {
+    # Try to get from cache first
+    if is_cache_valid; then
+        local cached_uri
+        cached_uri=$(grep "^CONN_URI:" "$CACHE_FILE" 2>/dev/null | cut -d: -f2-)
+        if [[ -n "$cached_uri" ]]; then
+            echo "$cached_uri"
+            return
+        fi
+    fi
+    
+    # Fallback to live query
     if virsh -c qemu:///system list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
         echo "qemu:///system"
     elif virsh -c qemu:///session list --all --name 2>/dev/null | grep -v '^$' | grep -q .; then
@@ -74,21 +171,32 @@ print_vm_list() {
     local vms
     vms=$(get_vms)
     if [ -z "$vms" ]; then
+        # Show a message if no VMs found
+        printf "<span color='%s'>No VMs found</span>\n" "$stopped_color"
         return
     fi
 
-    while IFS= read -r vm; do
-        [ -z "$vm" ] && continue
-        local status
-        status=$(get_vm_status "$vm")
-
-        if [[ "$status" == "running" ]]; then
-            # colored bullet, plus plain status
-            printf "<span color='%s'>●</span> %s (running)\n" "$running_color" "$vm"
-        else
-            printf "<span color='%s'>○</span> %s (stopped)\n" "$stopped_color" "$vm"
-        fi
-    done <<< "$vms"
+    # Fast display using cached data
+    if is_cache_valid; then
+        # Use cached status data for instant display
+        while IFS= read -r vm; do
+            [ -z "$vm" ] && continue
+            local cached_status
+            cached_status=$(grep "^VM:$vm:" "$CACHE_FILE" 2>/dev/null | cut -d: -f3)
+            
+            if [[ "$cached_status" == "running" ]]; then
+                printf "<span color='%s'>●</span> %s (running)\n" "$running_color" "$vm"
+            else
+                printf "<span color='%s'>○</span> %s (stopped)\n" "$stopped_color" "$vm"
+            fi
+        done <<< "$vms"
+    else
+        # Fallback: show VMs without status for instant display, status will update on background refresh
+        while IFS= read -r vm; do
+            [ -z "$vm" ] && continue
+            printf "<span color='%s'>○</span> %s\n" "$stopped_color" "$vm"
+        done <<< "$vms"
+    fi
 }
 
 print_actions_for_vm() {
@@ -155,48 +263,54 @@ execute_action() {
             fi
             ;;
 
-        *"Start"*)
-            if "${virsh_cmd[@]}" start "$vm_name" &>>"$DEBUG_LOG"; then
-                notify-send "VM Manager" "Started $vm_name"
-            else
-                notify-send "VM Manager" "Failed to start $vm_name"
-            fi
-            ;;
-        *"Shutdown"*)
-            if "${virsh_cmd[@]}" shutdown "$vm_name" &>>"$DEBUG_LOG"; then
-                notify-send "VM Manager" "Shutting down $vm_name"
-            else
-                notify-send "VM Manager" "Failed to shutdown $vm_name"
-            fi
-            ;;
-        *"Reboot"*)
-            if "${virsh_cmd[@]}" reboot "$vm_name" &>>"$DEBUG_LOG"; then
-                notify-send "VM Manager" "Rebooting $vm_name"
-            else
-                notify-send "VM Manager" "Failed to reboot $vm_name"
-            fi
-            ;;
-        *"Suspend"*)
-            if "${virsh_cmd[@]}" suspend "$vm_name" &>>"$DEBUG_LOG"; then
-                notify-send "VM Manager" "Suspended $vm_name"
-            else
-                notify-send "VM Manager" "Failed to suspend $vm_name"
-            fi
-            ;;
-        *"Resume"*)
-            if "${virsh_cmd[@]}" resume "$vm_name" &>>"$DEBUG_LOG"; then
-                notify-send "VM Manager" "Resumed $vm_name"
-            else
-                notify-send "VM Manager" "Failed to resume $vm_name"
-            fi
-            ;;
-        *"Force Off"*)
-            if "${virsh_cmd[@]}" destroy "$vm_name" &>>"$DEBUG_LOG"; then
-                notify-send "VM Manager" "Force stopped $vm_name"
-            else
-                notify-send "VM Manager" "Failed to force stop $vm_name"
-            fi
-            ;;
+         *"Start"*)
+             if "${virsh_cmd[@]}" start "$vm_name" &>>"$DEBUG_LOG"; then
+                 notify-send "VM Manager" "Started $vm_name"
+                 clear_cache  # Clear cache so status updates immediately
+             else
+                 notify-send "VM Manager" "Failed to start $vm_name"
+             fi
+             ;;
+         *"Shutdown"*)
+             if "${virsh_cmd[@]}" shutdown "$vm_name" &>>"$DEBUG_LOG"; then
+                 notify-send "VM Manager" "Shutting down $vm_name"
+                 clear_cache  # Clear cache so status updates immediately
+             else
+                 notify-send "VM Manager" "Failed to shutdown $vm_name"
+             fi
+             ;;
+         *"Reboot"*)
+             if "${virsh_cmd[@]}" reboot "$vm_name" &>>"$DEBUG_LOG"; then
+                 notify-send "VM Manager" "Rebooting $vm_name"
+                 clear_cache  # Clear cache so status updates immediately
+             else
+                 notify-send "VM Manager" "Failed to reboot $vm_name"
+             fi
+             ;;
+         *"Suspend"*)
+             if "${virsh_cmd[@]}" suspend "$vm_name" &>>"$DEBUG_LOG"; then
+                 notify-send "VM Manager" "Suspended $vm_name"
+                 clear_cache  # Clear cache so status updates immediately
+             else
+                 notify-send "VM Manager" "Failed to suspend $vm_name"
+             fi
+             ;;
+         *"Resume"*)
+             if "${virsh_cmd[@]}" resume "$vm_name" &>>"$DEBUG_LOG"; then
+                 notify-send "VM Manager" "Resumed $vm_name"
+                 clear_cache  # Clear cache so status updates immediately
+             else
+                 notify-send "VM Manager" "Failed to resume $vm_name"
+             fi
+             ;;
+         *"Force Off"*)
+             if "${virsh_cmd[@]}" destroy "$vm_name" &>>"$DEBUG_LOG"; then
+                 notify-send "VM Manager" "Force stopped $vm_name"
+                 clear_cache  # Clear cache so status updates immediately
+             else
+                 notify-send "VM Manager" "Failed to force stop $vm_name"
+             fi
+             ;;
     esac
 }
 
@@ -224,6 +338,10 @@ clear_state() {
     rm -f "$STATE_FILE"
 }
 
+clear_cache() {
+    rm -f "$CACHE_FILE"
+}
+
 # --- selection parsing ------------------------------------------------------
 
 extract_vm_name_from_line() {
@@ -245,8 +363,15 @@ log_debug "Loaded state: stage='$stage', vm_name='$vm_name'"
 
 if [[ "${ROFI_RETV:-0}" == "0" ]]; then
     # Initial call: reset to VM list every time rofi opens
-    log_debug "ROFI_RETV=0 -> print VM list"
+    log_debug "ROFI_RETV=0 -> print VM list (fast mode)"
     clear_state
+    
+    # Pre-warm cache in background if needed
+    if ! is_cache_valid && [[ "$FAST_MODE" == "true" ]]; then
+        log_debug "Starting background cache refresh for next time"
+        refresh_cache_background
+    fi
+    
     print_vm_list
     exit 0
 fi
