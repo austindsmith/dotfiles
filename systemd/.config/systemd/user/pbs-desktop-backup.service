@@ -1,0 +1,9 @@
+[Unit]
+Description=Proxmox Backup - Desktop backup (user)
+
+[Service]
+Type=oneshot
+ExecStart=%h/usr/local/bin/pbs-desktop-backup.sh
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
