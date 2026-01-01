@@ -380,8 +380,7 @@ source = ~/.config/hypr/desktop/workspaces.conf
 
 
 # App placement
-windowrulev2 = workspace 2, class:^(vesktop)$
-windowrulev2 = float, class:^(vesktop)$, title:^(Picture-in-Picture)$
+windowrulev2 = workspace 6, class:^(vesktop)$
 windowrulev2 = workspace 6, class:^(obsidian)$
 
 # App autostart
@@ -403,5 +402,5 @@ windowrule = match:class .*, suppress_event maximize
 windowrulev2 = opacity 0.6 0.6, class:^(code|VSCodium)$
 
 # Fix some dragging issues with XWayland
-windowrule = match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0, no_focus on
+windowrule = match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pinned 0, nofocus on
 
