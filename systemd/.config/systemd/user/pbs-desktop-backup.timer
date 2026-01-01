@@ -1,9 +1,0 @@
-[Unit]
-Description=Daily desktop backup to Proxmox Backup Server (user)
-
-[Timer]
-OnCalendar=*-*-* 08:00
-Persistent=true
-
-[Install]
-WantedBy=timers.target
