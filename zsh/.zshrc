@@ -11,53 +11,9 @@ export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$HOME/.config/starship/starship.toml}
 export PATH="$HOME/.local/bin:$PATH"
 
 
-# Hint to many tools that truecolor is supported (harmless if ignored)
-export COLORTERM="${COLORTERM:-truecolor}"
-
 alias semaphore='/usr/local/bin/sem'
+alias clip="kitten clipboard"
 
-# -----------------------------------------------------------------------------
-# SSH TERM compatibility fix (prevents: "unknown terminal type xterm-kitty" on remote)
-#
-# Keep your local TERM as-is (kitty features locally), but when launching ssh from a
-# modern terminal (kitty/alacritty/foot/ghostty), advertise a widely-supported TERM
-# to the REMOTE side so it doesn't need xterm-kitty terminfo.
-#
-# Notes:
-# - We do NOT force a TTY (-t). This stays safe for scripts.
-# - If you want to bypass the fallback for a one-off, run:  TERM=xterm-kitty ssh ...
-# -----------------------------------------------------------------------------
-__ssh_term_fallback() {
-  case "$TERM" in
-    xterm-kitty|alacritty|foot|ghostty)
-      env TERM="xterm-256color" COLORTERM="$COLORTERM" command ssh "$@"
-      ;;
-    *)
-      command ssh "$@"
-      ;;
-  esac
-}
-
-
-# Kitty's ssh helper (kept as a convenience). Uses kitty if available, otherwise falls back.
-kssh() {
-  if command -v kitty >/dev/null 2>&1; then
-    kitty +kitten ssh "$@"
-  else
-    __ssh_term_fallback "$@"
-  fi
-}
-
-
-# -----------------------------------------------------------------------------
-# Pywal: persist/apply colors on every interactive shell start
-#
-# This sets your terminal colors by emitting escape sequences.
-# Requirements per-host:
-# - ~/.cache/wal/sequences must exist on that host (run `wal ...` there, or sync it)
-#
-# tmux users: ensure truecolor in tmux.conf (see note after this block).
-# -----------------------------------------------------------------------------
 __apply_pywal() {
   # Only if stdout is a TTY and pywal sequences exist
   [[ -t 1 ]] || return 0
@@ -122,3 +78,4 @@ fi
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/austin/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
