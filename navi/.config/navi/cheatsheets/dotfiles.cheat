@@ -1,0 +1,27 @@
+% dotfiles
+
+# Stow a config directory
+mkdir -p ~/.dotfiles/<package>/.config/<package> && mv ~/.config/<package>/* ~/.dotfiles/<package>/.config/<package>/ && cd ~/.dotfiles && stow <package>
+
+# Create dotfiles structure for package
+mkdir -p ~/.dotfiles/<package>/.config/<package>
+
+# Move config to dotfiles
+mv ~/.config/<package>/* ~/.dotfiles/<package>/.config/<package>/
+
+# Stow package
+cd ~/.dotfiles && stow <package>
+
+# Unstow package
+cd ~/.dotfiles && stow -D <package>
+
+# Restow package (refresh symlinks)
+cd ~/.dotfiles && stow -R <package>
+
+# Stow with verbose output
+cd ~/.dotfiles && stow -v <package>
+
+# List stowed packages
+ls -1 ~/.dotfiles
+
+$ package: ls -1 ~/.config

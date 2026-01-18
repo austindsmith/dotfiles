@@ -10,24 +10,7 @@
 export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$HOME/.config/starship/starship.toml}"
 export PATH="$HOME/.local/bin:$PATH"
 
-
-alias semaphore='/usr/local/bin/sem'
 alias clip="kitten clipboard"
-
-__apply_pywal() {
-  # Only if stdout is a TTY and pywal sequences exist
-  [[ -t 1 ]] || return 0
-
-  local seq="$HOME/.cache/wal/sequences"
-  local seq_alt="$HOME/.config/wal/sequences"  # optional: if you sync wal cache into config
-
-  if [[ -f "$seq" ]]; then
-    cat "$seq"
-  elif [[ -f "$seq_alt" ]]; then
-    cat "$seq_alt"
-  fi
-}
-__apply_pywal
 
 # -----------------------------------------------------------------------------
 # Atuin shell history (guarded)
@@ -78,4 +61,3 @@ fi
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/austin/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-

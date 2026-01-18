@@ -3,8 +3,13 @@
   "position": "top",
   "spacing": 0,
   "height": 34,
-  "modules-left": ["custom/logo", "hyprland/workspaces"],
-  "modules-center": ["clock"],
+  "modules-left": [
+    "custom/logo",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "tray",
     "memory",
@@ -60,7 +65,13 @@
   },
   "network": {
     "format-wifi": "{icon}",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
     "format-ethernet": "󰀂",
     "format-alt": "󱛇",
     "format-disconnected": "󰖪",
@@ -78,15 +89,18 @@
     "format-muted": "󰝟",
     "format-icons": {
       "headphone": "",
-      "default": ["󰖀", "󰕾", ""],
+      "default": [
+        "󰖀",
+        "󰕾",
+        ""
+      ],
     },
     "scroll-step": 5,
     "on-click": "~/.config/eww/scripts/toggle-audio.sh",
-    "on-click-right": "pavucontrol &",
+    "on-click-right": "pavucontrol-qt &",
     "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
   },
-
   "custom/logo": {
     "format": "  ",
     "tooltip": false,
@@ -95,8 +109,30 @@
   "battery": {
     "format": "{capacity}% {icon}",
     "format-icons": {
-      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ],
+      "default": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ],
     },
     "format-full": "Charged ",
     "interval": 5,

@@ -1,4 +1,5 @@
 /* Variables */
+@import "colors.css";
 @define-color mantle #1e2030;
 @define-color base rgb(36, 39, 58);
 @define-color text #cad3f5;
@@ -67,7 +68,7 @@
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.default {
-  background-color: alpha(@background, 0.9);
+  background-color: @;
   padding: 0 10px;
   margin: 2px 4px 5px 4px;
   border-radius: 10px;
@@ -90,12 +91,12 @@ window#waybar.hidden {
 }
 
 #workspaces button label {
-  color: @color12;
+  color: @primary;
   font-weight: bolder;
 }
 
 #workspaces button.active label {
-  color: @base;
+  color: @primary;
   font-weight: bolder;
 }
 
@@ -109,8 +110,8 @@ window#waybar.hidden {
 }
 
 #workspaces {
-  background-color: alpha(@background, 0.9);
-  border: 2px solid @color6;
+  background-color: @primary_container;
+  border: 2px solid @primary_fixed_dim;
   padding: 0 10px;
   margin: 2px 4px 5px 4px;
   box-shadow: 2px 2px 1px 1px alpha(@shadow, 0.6);
@@ -130,11 +131,10 @@ window#waybar.hidden {
 #workspaces button.active {
   padding-right: 6px;
   padding-left: 6px;
-  box-shadow: 2px 2px 1px 1px alpha(@shadow, 0.6);
-  padding-bottom: 3px;
+  padding-bottom: 1px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background: @color13;
+  background: @on_primary;
   background-size: 100% 100%; /* static */
   color: @mauve;
   border-radius: 12px;

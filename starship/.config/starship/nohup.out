@@ -1,0 +1,4 @@
+[2026-01-17 14:10:07.005] [info] Using configuration file /home/austin/.config/waybar/config.jsonc
+[2026-01-17 14:10:07.007] [info] Discovered appearance 'dark'
+[2026-01-17 14:10:07.029] [info] Using CSS file /home/austin/.config/waybar/style.css
+[2026-01-17 14:10:07.029] [error] colors.css:5:14'' is not a valid color name

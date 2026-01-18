@@ -167,6 +167,4 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "colors-rofi-light"
- 
-/* Insert theme modifications after this */
+@theme "themes/rounded-matugen"

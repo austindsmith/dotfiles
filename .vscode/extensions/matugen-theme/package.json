@@ -1,0 +1,17 @@
+{
+  "name": "matugen-theme",
+  "displayName": "Matugen Theme",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Matugen",
+        "uiTheme": "vs-dark",
+        "path": "./theme.json"
+      }
+    ]
+  }
+}
