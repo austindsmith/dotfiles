@@ -65,10 +65,6 @@
     "git.confirmSync": false,
     "git.autofetch": true,
     "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
-    "search.exclude": {
-      "**/.git": true,
-      "**/node_modules": true,
-    },
     "editor.tabCompletion": "off",
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "css.lint.unknownAtRules": "ignore",

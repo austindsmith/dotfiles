@@ -22,15 +22,15 @@ fi
 # -----------------------------------------------------------------------------
 # Completion system (with a cache dir)
 # -----------------------------------------------------------------------------
-autoload -Uz compinit
+# autoload -Uz compinit
 
 # Put zcompdump in XDG-ish cache location to avoid clutter and speed up init
 _ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 mkdir -p "$_ZSH_CACHE_DIR"
 
 # -C = skip recompilation check (faster); remove -C if you change functions a lot
-compinit -d "$_ZSH_CACHE_DIR/zcompdump" -C
-zmodload zsh/complist
+# compinit -d "$_ZSH_CACHE_DIR/zcompdump" -C
+# zmodload zsh/complist
 
 # -----------------------------------------------------------------------------
 # Shell integrations (guarded)
@@ -43,9 +43,9 @@ if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-if command -v carapace >/dev/null 2>&1; then
-  eval "$(carapace _carapace zsh)"
-fi
+#if command -v carapace >/dev/null 2>&1; then
+#  eval "$(carapace _carapace zsh)"
+#fi
 
 # -----------------------------------------------------------------------------
 # Plugins (guarded so this works across hosts)
@@ -56,6 +56,10 @@ fi
 
 if [[ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+if [[ -r /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.zsh
 fi
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
