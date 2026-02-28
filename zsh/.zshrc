@@ -32,24 +32,29 @@ mkdir -p "$_ZSH_CACHE_DIR"
 # compinit -d "$_ZSH_CACHE_DIR/zcompdump" -C
 # zmodload zsh/complist
 
-# -----------------------------------------------------------------------------
-# Shell integrations (guarded)
-# -----------------------------------------------------------------------------
+
+# Shell
+
+# Makes folder navigation easier, run with `z {folder_name}`
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
+# Customize appearance of shell
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
+
+# For Python auto venv activation
+if command -v starship >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
 
 #if command -v carapace >/dev/null 2>&1; then
 #  eval "$(carapace _carapace zsh)"
 #fi
 
-# -----------------------------------------------------------------------------
-# Plugins (guarded so this works across hosts)
-# -----------------------------------------------------------------------------
 if [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -65,3 +70,7 @@ fi
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/austin/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
