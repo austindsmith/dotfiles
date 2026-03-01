@@ -1,6 +1,6 @@
 # zsh
 
-
+Plugin manager: [antidote](https://antidote.sh/)
 ## Considerations
 - Using direnv for environment variables
 

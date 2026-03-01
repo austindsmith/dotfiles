@@ -13,6 +13,16 @@ export PATH="$HOME/.local/bin:$PATH"
 alias clip="kitten clipboard"
 
 # -----------------------------------------------------------------------------
+# Plugin manager
+# -----------------------------------------------------------------------------
+source /usr/share/zsh-antidote/antidote.zsh
+
+
+antidote load
+
+zsh_plugins=~/.zsh_plugins
+
+# -----------------------------------------------------------------------------
 # Atuin shell history (guarded)
 # -----------------------------------------------------------------------------
 if command -v atuin >/dev/null 2>&1; then
@@ -34,6 +44,10 @@ mkdir -p "$_ZSH_CACHE_DIR"
 
 
 # Shell
+# Makes folder navigation easier, run with `z {folder_name}`
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Makes folder navigation easier, run with `z {folder_name}`
 if command -v zoxide >/dev/null 2>&1; then
@@ -49,7 +63,6 @@ fi
 if command -v starship >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
-
 
 #if command -v carapace >/dev/null 2>&1; then
 #  eval "$(carapace _carapace zsh)"
