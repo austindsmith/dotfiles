@@ -12,15 +12,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 alias clip="kitten clipboard"
 
-# -----------------------------------------------------------------------------
-# Plugin manager
-# -----------------------------------------------------------------------------
-source /usr/share/zsh-antidote/antidote.zsh
 
-
-antidote load
-
-zsh_plugins=~/.zsh_plugins
 
 # -----------------------------------------------------------------------------
 # Atuin shell history (guarded)
@@ -32,15 +24,15 @@ fi
 # -----------------------------------------------------------------------------
 # Completion system (with a cache dir)
 # -----------------------------------------------------------------------------
-# autoload -Uz compinit
+autoload -Uz compinit
 
 # Put zcompdump in XDG-ish cache location to avoid clutter and speed up init
 _ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 mkdir -p "$_ZSH_CACHE_DIR"
 
 # -C = skip recompilation check (faster); remove -C if you change functions a lot
-# compinit -d "$_ZSH_CACHE_DIR/zcompdump" -C
-# zmodload zsh/complist
+compinit -d "$_ZSH_CACHE_DIR/zcompdump" -C
+zmodload zsh/complist
 
 
 # Shell
@@ -49,9 +41,8 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
-# Makes folder navigation easier, run with `z {folder_name}`
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  exec tmux
 fi
 
 # Customize appearance of shell
@@ -60,25 +51,13 @@ if command -v starship >/dev/null 2>&1; then
 fi
 
 # For Python auto venv activation
-if command -v starship >/dev/null 2>&1; then
+if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
 #if command -v carapace >/dev/null 2>&1; then
 #  eval "$(carapace _carapace zsh)"
 #fi
-
-if [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-if [[ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-if [[ -r /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.zsh ]]; then
-  source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.zsh
-fi
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/austin/.rd/bin:$PATH"
@@ -87,3 +66,13 @@ export PATH="/home/austin/.rd/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# -----------------------------------------------------------------------------
+# Plugin manager
+# -----------------------------------------------------------------------------
+source /usr/share/zsh-antidote/antidote.zsh
+
+
+antidote load
+
+zsh_plugins=~/.zsh_plugins
