@@ -1,0 +1,9 @@
+
+[Unit]
+Description=Store Wayland clipboard history using cliphist
+
+[Service]
+ExecStart=/usr/bin/wl-paste --watch /usr/bin/cliphist store
+
+[Install]
+WantedBy=default.target

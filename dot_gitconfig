@@ -1,0 +1,20 @@
+[user]
+	name = Austin Smith
+	email = austindsmith_accounts@proton.me
+	signingKey = 
+[init]
+	defaultBranch = main
+[gpg]
+	format = 
+	program = gpg
+[commit]
+	gpgSign = false
+[tag]
+	forceSignAnnotated = false
+[gpg "ssh"]
+	program = 
+	allowedSignersFile = 
+[pull]
+	rebase = true
+[safe]
+	directory = *

@@ -1,0 +1,20 @@
+/* ROUNDED THEME FOR ROFI */
+/* Author: Newman Sanchez (https://github.com/newmanls) */
+
+@import "colors.rasi"
+* {
+    bg0:    @on-primary-fixed;
+    bg1:    @on-primary-fixed;
+    bg2:    @on-secondary-fixed;
+    bg3:    @inverse-primary;
+    fg0:    @inverse-primary;
+    fg1:    @inverse-primary;
+    fg2:    @inverse-primary;
+    fg3:    @inverse-primary;
+}
+
+@import "template/rounded-template.rasi"
+
+element selected {
+    text-color: @bg0;
+}

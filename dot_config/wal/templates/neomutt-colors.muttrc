@@ -1,0 +1,56 @@
+
+# ~/.config/wal/templates/neomutt-colors.muttrc
+
+########################################
+# Base
+########################################
+
+color normal        {foreground}  {background}
+color error         {color1}      {background}
+color status        {background}  {color4}
+color indicator     {background}  {color4}
+color sidebar_divider   {color8}  {background}
+color sidebar_highlight {background} {color4}
+color sidebar_unread    {color2}  {background}
+
+########################################
+# Index (message list)
+########################################
+
+# Default index
+color index         {foreground}  {background}
+
+# New mail
+color index         {color2}      {background} "~N"
+
+# Deleted
+color index         {color1}      {background} "~D"
+
+# Flagged
+color index         {color3}      {background} "~F"
+
+# Replied
+color index         {color5}      {background} "~R"
+
+########################################
+# Message view
+########################################
+
+# Quoted text (multiple levels)
+color quoted        {color6}      {background}
+color quoted1       {color5}      {background}
+color quoted2       {color4}      {background}
+
+# Signatures
+color signature     {color7}      {background}
+
+########################################
+# Headers & attachments
+########################################
+
+# Important headers
+color header        {color4}      {background} "^(From|To|Cc|Bcc|Subject|Date):"
+color header        {color5}      {background} "^Subject:"
+
+# Attachment parts
+color attachment    {color6}      {background}

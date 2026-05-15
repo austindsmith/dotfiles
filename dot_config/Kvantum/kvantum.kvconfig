@@ -1,0 +1,5 @@
+[General]
+theme=matugen
+
+[Applications]
+matugen=kate
