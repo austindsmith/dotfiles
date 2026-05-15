@@ -1,0 +1,4 @@
+% connect-android
+
+# Connect to Android phone that has been paired with adb
+nohup scrcpy >/dev/null 2>&1 &

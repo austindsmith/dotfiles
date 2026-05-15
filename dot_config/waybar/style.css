@@ -1,0 +1,320 @@
+/* Variables */
+@import "catppuccin.css";
+@define-color mantle #1e2030;
+@define-color base rgb(36, 39, 58);
+@define-color text #cad3f5;
+@define-color surface0 #363a4f;
+@define-color surface2 #5b6078;
+@define-color blue #8aadf4;
+@define-color green #a6da95;
+@define-color peach #f5a97f;
+@define-color rosewater #f4dbd6;
+@define-color lavender #b7bdf8;
+@define-color yellow #eed49f;
+@define-color red #ed8796;
+@define-color maroon #ee99a0;
+@define-color teal #8bd5ca;
+@define-color sky #91d7e3;
+@define-color sapphire #7dc4e4;
+@define-color mauve #c6a0f6;
+@define-color pink #f5bde6;
+@define-color border rgba(183, 189, 248, 0.4);
+@define-color shadow rgb(30, 32, 48);
+
+@import url("file:///home/austin/.cache/wal/colors-waybar.css");
+
+* {
+  font-family: FiraCode Nerd Font;
+  font-size: 13.5px;
+  min-height: 0;
+}
+
+/* General Settings */
+#wireplumber,
+#custom-power,
+#battery,
+#cava,
+#custom-cava,
+#custom-clipboard,
+#custom-notifications,
+#custom-arch,
+#custom-gpu-usage,
+#custom-updates,
+#mode,
+#cpu,
+#memory,
+#temperature,
+#custom-music,
+#custom-fans,
+#clock,
+#idle_inhibitor,
+#bluetooth,
+#custom-wf-recorder,
+#pulseaudio,
+#backlight,
+#network,
+#tray,
+#custom-power-menu,
+#language,
+#window,
+#custom-weather,
+#custom-weather.severe,
+#custom-weather.sunnyDay,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.default {
+  background-color: @surface0;
+  padding: 0 15px;
+  margin: 2px 4px 5px 4px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 1px 1px alpha(@shadow, 0.6);
+  border: 2px solid @overlay0;
+  background-clip: padding-box;
+  color: @text;
+}
+
+window#waybar {
+  color: @overlay0;
+  background: transparent;
+}
+
+window#waybar.hidden {
+  opacity: 0;
+}
+
+#workspaces * {
+  font-size: 14px;
+}
+
+#workspaces button label {
+  color: @primary;
+  font-weight: bolder;
+}
+
+#workspaces button.active label {
+  color: @primary;
+  font-weight: bolder;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+}
+
+#workspaces button.urgent label {
+  color: @text;
+  font-weight: bolder;
+}
+
+#workspaces {
+  background-color: @surface0;
+  border: 2px solid @overlay0;
+  padding: 0 10px;
+  margin: 2px 4px 5px 4px;
+  box-shadow: 2px 2px 1px 1px alpha(@shadow, 0.6);
+  border-radius: 10px;
+  background-clip: padding-box;
+}
+
+#workspaces button {
+  border-radius: 15px;
+  margin: 3px;
+  padding: 0 5px;
+  font-weight: bolder;
+  min-width: 20px;
+  color: @text;
+}
+
+#workspaces button.active {
+  padding-right: 6px;
+  padding-left: 6px;
+  padding-bottom: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: @overlay1;
+  background-size: 100% 100%; /* static */
+  color: @text;
+  border-radius: 12px;
+}
+
+#workspaces button:hover {
+  background-color: @surface0;
+}
+
+#workspaces button.focused:hover {
+  background-color: alpha(@base, 0.9);
+}
+
+#workspaces button.focused:hover label {
+  color: @text;
+}
+
+/* Individual Modules */
+#battery {
+  color: @mauve;
+}
+#battery.warning {
+  color: @yellow;
+}
+#battery.critical {
+  color: @peach;
+}
+#battery.urgent {
+  color: @red;
+}
+
+#custom-cava {
+  color: @lavender;
+  border-radius: 12px;
+}
+
+#cpu {
+  color: @blue;
+}
+#memory {
+  color: @green;
+}
+
+#custom-notifications {
+  color: @yellow;
+}
+#custom-weather {
+  color: @red;
+}
+#custom-updates {
+  color: @teal;
+}
+#custom-wf-recorder {
+  color: @red;
+}
+#custom-gpu-temp {
+  color: @peach;
+}
+#custom-gpu-usage {
+  color: @teal;
+}
+#custom-power-menu {
+  color: @red;
+}
+#temperature {
+  color: @peach;
+}
+#bluetooth {
+  color: @blue;
+}
+
+#window {
+  background: linear-gradient(
+    52deg,
+    rgba(139, 213, 202, 1) 0%,
+    rgba(138, 173, 244, 1) 30%,
+    rgba(183, 189, 248, 1) 48%,
+    rgba(198, 160, 246, 1) 77%,
+    rgba(238, 153, 160, 1) 100%
+  );
+  background-size: 100% 100%; /* static */
+  text-shadow: 0px 0px 5px @surface0;
+  font-weight: bold;
+  color: @text;
+  border: none;
+}
+
+#temperature.critical {
+  background-color: @red;
+  color: @mantle;
+}
+
+#custom-music {
+  background: linear-gradient(
+    52deg,
+    rgba(139, 213, 202, 1) 0%,
+    rgba(138, 173, 244, 1) 30%,
+    rgba(183, 189, 248, 1) 48%,
+    rgba(198, 160, 246, 1) 77%,
+    rgba(238, 153, 160, 1) 100%
+  );
+  background-size: 100% 100%; /* static */
+  text-shadow: 0px 0px 5px @border;
+  font-weight: bold;
+  color: @text;
+  border: none;
+}
+
+#custom-fans {
+  color: @green;
+}
+#clock {
+  background-color: @surface0;
+  color: @text;
+}
+#language {
+  color: @blue;
+}
+#pulseaudio {
+  color: @text;
+}
+
+#pulseaudio.muted {
+  background-color: @red;
+  color: @text;
+}
+
+#pulseaudio.source-muted {
+  background-color: @peach;
+  color: @text;
+}
+
+#backlight {
+  color: @blue;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging,
+#battery.plugged {
+  background-color: @green;
+  color: @mantle;
+}
+
+#battery.critical:not(.charging) {
+  background-color: @red; /* no blink */
+  color: @mantle;
+}
+
+#network {
+  color: @text;
+}
+
+#network.disconnected {
+  background-color: @red;
+  color: @mantle;
+}
+
+#network.linked {
+  background-color: @surface0;
+  color: @mantle;
+}
+
+#clock.cl2 {
+  background: linear-gradient(
+    52deg,
+    rgba(139, 213, 202, 1) 0%,
+    rgba(138, 173, 244, 1) 30%,
+    rgba(183, 189, 248, 1) 48%,
+    rgba(198, 160, 246, 1) 77%,
+    rgba(238, 153, 160, 1) 100%
+  );
+  background-size: 100% 100%; /* static */
+  text-shadow: 0px 0px 5px @color6;
+  font-weight: bold;
+  color: @text;
+  border: none;
+}
+
+/* No keyframes needed; animations removed */

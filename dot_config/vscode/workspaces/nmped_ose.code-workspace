@@ -1,0 +1,43 @@
+{
+  "folders": [
+    {
+      "path": "/home/austin/code/work/nmped_ose/configs",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/dbt_project",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/google-apps-scripts",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/knowledge",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/notebooks",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/orchestration",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/reporting",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/utils",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/vault",
+    },
+    {
+      "path": ".",
+    },
+    {
+      "path": "/home/austin/code/work/nmped_ose/warehouse",
+    },
+    {
+      "path": "../../../../../code/work/nmped_ose/.git",
+    },
+    {
+      "path": "../../../../../.dbt",
+    },
+  ],
+}

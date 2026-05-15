@@ -1,0 +1,8 @@
+% roms, parse, igir, dats, sort
+
+# Parse roms from NAS
+igir copy extract \
+  --dat "/mnt/nas/homes/austin/roms/_meta/dats/" \
+  --input "/mnt/nas/homes/austin/roms/unsorted/" \
+  --output "/mnt/nas/homes/austin/roms/sorted/" \
+  --dir-dat-mirror

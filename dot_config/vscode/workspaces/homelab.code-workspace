@@ -1,0 +1,76 @@
+{
+  "name": "homelab",
+  "folders": [
+    {
+      "name": ".kube",
+      "path": "/home/austin/.kube",
+    },
+    {
+      "name": ".dotfiles",
+      "path": "/home/austin/.dotfiles",
+    },
+    {
+      "name": "the-docs-lodge",
+      "path": "/home/austin/code/homelab/the-docs-lodge",
+    },
+    {
+      "name": "the-black-lodge",
+      "path": "/home/austin/code/homelab/the-black-lodge",
+    },
+    {
+      "name": "the-white-lodge",
+      "path": "/home/austin/code/homelab/the-white-lodge",
+    },
+    {
+      "name": "austin-smith",
+      "path": "/home/austin/code/homelab/austin-smith",
+    },
+    {
+      "name": "professional-docs",
+      "path": "/home/austin/code/homelab/professional-docs",
+    },
+  ],
+  "settings": {
+    "latex-workshop.latex.auxDir": "%DIR%/../../build",
+    "latex-workshop.latex.outDir": "%DIR%/../../dist",
+    "latex-workshop.latex.build.fromWorkspaceFolder": false,
+    "latex-workshop.latex.build.rootfileInStatus": true,
+    "latex-workshop.latex.clean.subfolder.enabled": true,
+    "latex-workshop.latex.clean.fileTypes": [
+      "*.aux",
+      "*.fdb_latexmk",
+      "*.fls",
+      "*.log",
+      "*.out",
+      "*.synctex.gz",
+      "*.xdv",
+      "*.toc",
+    ],
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": true,
+    "latex-workshop.latex.tools": [
+      {
+        "name": "latexmk-xe",
+        "command": "latexmk",
+        "args": [
+          "-xelatex",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-g",
+          "-cd",
+          "-auxdir=%AUXDIR%",
+          "-outdir=%OUTDIR%",
+          "%DOC%",
+        ],
+      },
+    ],
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "xelatex",
+        "tools": ["latexmk-xe"],
+      },
+    ],
+    "latex-workshop.latex.recipe.default": "xelatex",
+  },
+}
