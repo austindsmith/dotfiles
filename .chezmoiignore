@@ -1,0 +1,5 @@
+.ssh/agent
+.ssh/agent/**
+.ssh/*.pub
+.ssh/keys/*.pub
+.ssh/known_hosts
