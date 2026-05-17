@@ -1,7 +1,7 @@
 % dotfiles
 
 # Migrate dotfile to chezmoi
-stow -D <package> && mv ~/.dotfiles/<package>/.config/<package> ~/.config/<package> && chezmoi add ~/.config/<package>
+stow -D <package> && mv ~/.dotfiles/<package>/.config/<package> ~/.config/<package> && chezmoi add ~/.config/<package> && rm -rf ~/.dotfiles/<package>
 
 # Stow a config directory
 mkdir -p ~/.dotfiles/<package>/.config/<package> && mv ~/.config/<package>/* ~/.dotfiles/<package>/.config/<package>/ && cd ~/.dotfiles && stow <package>
