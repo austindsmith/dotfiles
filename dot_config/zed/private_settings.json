@@ -13,43 +13,43 @@
   "always_treat_brackets_as_autoclosed": true,
   "colorize_brackets": true,
   "tabs": {
-    "file_icons": true,
+    "file_icons": true
   },
   "tab_bar": {
     "show_pinned_tabs_in_separate_row": true,
-    "show": true,
+    "show": true
   },
   "title_bar": {
     "show_user_picture": false,
     "show_onboarding_banner": false,
     "show_branch_name": true,
-    "show_branch_status_icon": false,
+    "show_branch_status_icon": false
   },
   "disable_ai": true,
   "project_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "outline_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "collaboration_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "agent": {
     "dock": "right",
     "favorite_models": [],
-    "model_parameters": [],
+    "model_parameters": []
   },
   "git_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "redact_private_values": true,
   "telemetry": {
     "diagnostics": false,
-    "metrics": false,
+    "metrics": false
   },
   "session": {
-    "trust_all_worktrees": true,
+    "trust_all_worktrees": true
   },
   "icon_theme": "Catppuccin Macchiato",
   "ui_font_size": 16,
@@ -57,51 +57,51 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Catppuccin Macchiato",
+    "dark": "Catppuccin Macchiato"
   },
   "languages": {
     "Python": {
       "formatter": {
         "external": {
           "command": "ruff",
-          "arguments": ["format", "-"],
-        },
+          "arguments": ["format", "-"]
+        }
       },
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "JavaScript": {
       "formatter": "prettier",
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "TypeScript": {
       "formatter": "prettier",
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "Shell Script": {
       "formatter": {
         "external": {
           "command": "shfmt",
-          "arguments": ["-i", "2", "-"],
-        },
+          "arguments": ["-i", "2", "-"]
+        }
       },
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "TOML": {
       "formatter": {
         "external": {
           "command": "taplo",
-          "arguments": ["fmt", "-"],
-        },
+          "arguments": ["fmt", "-"]
+        }
       },
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "Markdown": {
       "formatter": "prettier",
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "HCL": {
       "language_servers": ["terraform-ls"],
-      "format_on_save": "on",
-    },
-  },
+      "format_on_save": "on"
+    }
+  }
 }

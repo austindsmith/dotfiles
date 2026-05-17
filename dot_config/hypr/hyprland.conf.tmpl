@@ -9,7 +9,7 @@ source = ~/.cache/wal/hyprland-wal.conf
 ### MONITORS ###
 ################
 
-source = ~/.config/hypr/desktop/monitors.conf
+source = ~/.config/hypr/{{ .device.name }}/monitors.conf
 
 
 ###################
@@ -213,6 +213,6 @@ source = ~/.config/hypr/shared/keybindings.conf
 ### WINDOWS AND WORKSPACES ###
 ##############################
 
-source = ~/.config/hypr/desktop/workspaces.conf
+source = ~/.config/hypr/{{ .device.name }}/workspaces.conf
 
 source = ~/.config/hypr/shared/windowrules.conf
