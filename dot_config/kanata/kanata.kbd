@@ -1,0 +1,9 @@
+;; maps capslock to left control button
+(defcfg
+  input (device-file "/dev/input/by-id/usb-Razer_Razer_BlackWidow_V4-event-kbd")
+  output (uinput-sink "kanata")
+)
+(defsrc 
+  caps)
+(deflayer base
+  lctl)

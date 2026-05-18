@@ -13,12 +13,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 alias clip="kitten clipboard"
 
-# -----------------------------------------------------------------------------
-# Atuin shell history (guarded)
-# -----------------------------------------------------------------------------
-if command -v atuin >/dev/null 2>&1; then
-  eval "$(atuin init zsh)"
-fi
 
 # -----------------------------------------------------------------------------
 # Completion system (with a cache dir)

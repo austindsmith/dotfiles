@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 -- leaders before loading plugins
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
 -- Import UI settings
 require("config.ui")
 

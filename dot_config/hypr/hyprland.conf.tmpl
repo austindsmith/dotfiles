@@ -27,28 +27,8 @@ $menu = rofi -show drun
 ### EXEC-ONCE ###
 #################
 
-# Wallpaper
-exec-once = hyprpaper
-
-# Status bar
-exec-once = waybar
-
-# Notification manager
-exec-once = swaync
-
-# Applications
-exec-once = vesktop
-
-# Screen share
-exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
-exec-once = dbus-update-activation-environment --systemd --all
-
-exec-once = systemctl --user start hyprpolkitagent
-
-# Refresh tldr cache
-exec-once = tldr --update
-
+source = ~/.config/hypr/shared/autostart.conf
+source = ~/.config/hypr/shared/environment_variables.conf
 
 ###################
 ### PERMISSIONS ###
@@ -154,7 +134,7 @@ animations {
 
 # See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
 dwindle {
-    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    #pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     preserve_split = true # You probably want this
 }
 
