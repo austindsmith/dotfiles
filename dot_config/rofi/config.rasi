@@ -1,6 +1,6 @@
 configuration {
-  modes: [ combi, drun, run, ssh, window, filebrowser, keys ];
-  combi-modes: [ drun, run, ssh, window, filebrowser, keys ];
+  modes: [ combi, drun, run, ssh, window, filebrowser, keys, "clipboard:~/.config/rofi/plugins/cliphist-rofi-img"];
+  combi-modes: [ drun, run, ssh, window, filebrowser, keys, "clipboard:~/.config/rofi/plugins/cliphist-rofi-img"];
   show-icons: true;
 /*	font: "mono 12";*/
 /*	location: 0;*/
@@ -76,6 +76,7 @@ configuration {
 	display-combi: "All";
 	display-keys: "Keys";
 	display-filebrowser: "Files";
+  display-clipboard: "Clipboard";
 /*	display-recursivebrowser: ;*/
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/

@@ -5,3 +5,5 @@
 .ssh/known_hosts
 .config/packer/checkpoint*
 .config/packer/plugins
+.config/nvim/lazy-lock.json
+.config/rofi/plugins
