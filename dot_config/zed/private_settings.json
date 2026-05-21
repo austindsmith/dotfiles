@@ -101,7 +101,12 @@
     },
     "HCL": {
       "language_servers": ["terraform-ls"],
-      "format_on_save": "on"
+      "formatter": {
+        "external": {
+          "command": "packer",
+          "arguments": ["fmt", "-"]
+        }
+      }
     }
   }
 }
