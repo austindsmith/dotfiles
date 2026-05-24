@@ -107,6 +107,25 @@
           "arguments": ["fmt", "-"]
         }
       }
+    },
+    "YAML": {
+      "formatter": {
+        "external": {
+          "command": "yamlfmt",
+          "arguments": ["-in", "-conf", "/home/austin/.config/yamlfmt/.yamlfmt"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "Ansible": {
+      "language_servers": ["ansible-language-server"],
+      "formatter": {
+        "external": {
+          "command": "yamlfmt",
+          "arguments": ["-in", "-conf", "/home/austin/.config/yamlfmt/.yamlfmt"]
+        }
+      },
+      "format_on_save": "on"
     }
   }
 }
