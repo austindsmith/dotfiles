@@ -59,9 +59,10 @@ command -v flux >/dev/null && . <(flux completion zsh)
 export PATH="/home/austin/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
-if command -v fnm >/dev/null 2>&1; then
-  eval "$(fnm env --use-on-cd --shell zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"   # or fish, bash
 fi
+
 # -----------------------------------------------------------------------------
 # Plugin manager
 # -----------------------------------------------------------------------------
