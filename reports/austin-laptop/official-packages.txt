@@ -285,6 +285,7 @@ ttf-font-awesome-5
 ttf-liberation
 ttf-nerd-fonts-symbols
 ttf-opensans
+ufw
 unrar
 unzip
 upower
