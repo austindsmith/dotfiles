@@ -1,7 +1,7 @@
 .ssh/agent
 .ssh/agent/**
-.ssh/*.pub
-.ssh/keys/*.pub
+#.ssh/*.pub
+#.ssh/keys/*.pub
 .ssh/known_hosts
 .config/packer/checkpoint*
 .config/packer/plugins
