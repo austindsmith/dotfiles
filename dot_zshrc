@@ -11,7 +11,7 @@ export PATH="$HOME/Applications/ebook-tools:$PATH"
 export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$HOME/.config/starship/starship.toml}"
 export PATH="$HOME/.local/bin:$PATH"
 
-export GITEA_WORK_DIR="/home/austin/.local/share/gitea"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 alias clip="kitten clipboard"
 
