@@ -1,12 +1,12 @@
-# -----------------------------------------------------------------------------
-# Interactive-only Zsh init (safe for scp/rsync/non-interactive shells)
-# -----------------------------------------------------------------------------
+###################################################
+#                      Init                       #
+###################################################
 
 [[ -o interactive ]] || return
 
-# -----------------------------------------------------------------------------
-# Environment
-# -----------------------------------------------------------------------------
+###################################################
+#                   Environment                   #
+###################################################
 export PATH="$HOME/Applications/ebook-tools:$PATH"
 export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$HOME/.config/starship/starship.toml}"
 export PATH="$HOME/.local/bin:$PATH"
@@ -15,10 +15,21 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 alias clip="kitten clipboard"
 
+###################################################
+#                    Functions                    #
+###################################################
+# Creates headers like above this line and pipes to the kitten clipboard.
+cbox() {
+    local text="$1"
+    local design="${2:-shell}"
+    local padding="${3:-h4v1}"
+    local size="${4:-51x3}"
+    echo "$text" | boxes -d "$design" -p "$padding" -s "$size" -a c | kitten clipboard
+}
 
-# -----------------------------------------------------------------------------
-# Completion system (with a cache dir)
-# -----------------------------------------------------------------------------
+###################################################
+#                  Autocomplete                   #
+###################################################
 autoload -Uz compinit
 
 # Put zcompdump in XDG-ish cache location to avoid clutter and speed up init
@@ -65,9 +76,9 @@ if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"   # or fish, bash
 fi
 
-# -----------------------------------------------------------------------------
-# Plugin manager
-# -----------------------------------------------------------------------------
+###################################################
+#                     Plugins                     #
+###################################################
 source /usr/share/zsh-antidote/antidote.zsh
 
 antidote load
