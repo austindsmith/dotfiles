@@ -2,6 +2,7 @@ acroread-dc-wine
 appimagelauncher
 beekeeper-studio-bin
 bookokrat-bin
+boxes
 bruno
 carapace-bin
 catppuccin-whiskers-bin
@@ -52,15 +53,17 @@ qbittorrent-enhanced
 quarto-cli-bin
 rofi-power-menu
 rstudio-desktop-bin
-rustdesk-bin
+rustdesk
 steam-native-runtime
 tex-fmt
 textext
 themix-full-git
 themix-theme-oomox-git
 trezor-suite-appimage
+trufflehog
 vagrant
 vencord
+ventoy
 visual-studio-code-bin
 wine-nine
 wpgtk
