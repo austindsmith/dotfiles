@@ -13,6 +13,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="~/.npm-global/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
+export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
 alias clip="kitten clipboard"
 
 ###################################################
