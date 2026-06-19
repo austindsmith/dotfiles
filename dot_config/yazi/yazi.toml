@@ -1,0 +1,4 @@
+[mgr]
+syntect_theme = '~/.config/bat/themes/Catppuccin Macchiato.tmTheme'
+show_hidden = true
+sort_by = 'alphabetical'
