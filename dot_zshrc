@@ -7,12 +7,13 @@
 ###################################################
 #                   Environment                   #
 ###################################################
+
 export PATH="$HOME/Applications/ebook-tools:$PATH"
-export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$HOME/.config/starship/starship.toml}"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="~/.npm-global/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
+export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$HOME/.config/starship/starship.toml}"
 export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 ###################################################
@@ -91,6 +92,7 @@ fi
 ###################################################
 #                     Plugins                     #
 ###################################################
+
 source /usr/share/zsh-antidote/antidote.zsh
 
 antidote load
