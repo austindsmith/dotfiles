@@ -2,6 +2,15 @@
 
 Plugin manager: [antidote](https://antidote.sh/)
 
+## Ideas
+
+- Make a full cli for `cbox` from .zshrc and add to Github/AUR
+  - Allow configuration via a config file
+  - Options for boxes made with `/` or `#` and any other multiline comment types
+  - Configurable `padding`, `design`, `text` and levels `-L2` for heading level
+  - Add clipboard integration feature with `kitty` and other terminal emulators (unless there's a universal way to do it)
+  - Help commands
+
 ## Considerations
 
 - Using direnv for environment variables
