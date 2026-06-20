@@ -34,6 +34,11 @@ cbox() {
     echo "$text" | boxes -d "$design" -p "$padding" -s "$size" -a c | kitten clipboard
 }
 
+# Quick tunneling to Cloudnative PG databases
+db-tunnel() {
+  tsh proxy db --tunnel --port=5432 app-cluster-rw
+}
+
 ###################################################
 #                  Autocomplete                   #
 ###################################################
