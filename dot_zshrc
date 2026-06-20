@@ -36,7 +36,7 @@ cbox() {
 
 # Quick tunneling to Cloudnative PG databases
 db-tunnel() {
-  tsh proxy db --tunnel --port=5432 app-cluster-rw
+  tsh proxy db --tunnel --port=5432 "$1" --db-user="$2" --db-name="${3:-postgres}"
 }
 
 ###################################################
