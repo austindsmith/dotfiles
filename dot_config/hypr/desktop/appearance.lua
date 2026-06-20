@@ -1,0 +1,18 @@
+hl.config({
+    general = {
+        gaps_in = 20,
+        gaps_out = 40,
+        border_size = 2,
+        -- active border: gradient of two wal colors
+        col = {
+            active_border = border_active_color .. " 45deg",
+            inactive_border = border_inactive_color,
+        },
+        -- inactive border: dimmer color with some transparency
+        -- Set to true enable resizing windows by clicking and dragging on borders and gaps
+        resize_on_border = false,
+        -- Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
+        allow_tearing = false,
+        layout = "dwindle",
+    },
+})
