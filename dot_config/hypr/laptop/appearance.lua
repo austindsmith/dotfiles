@@ -7,8 +7,8 @@ hl.config({
         border_size = 2,
         -- active border: gradient of two wal colors
         col = {
-            active_border = border_active_color .. " 45deg",
-            inactive_border = border_inactive_color,
+            active_border = {colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle=45},
+            inactive_border = "rgba(595959aa)",
         },
         -- inactive border: dimmer color with some transparency
         -- Set to true enable resizing windows by clicking and dragging on borders and gaps
