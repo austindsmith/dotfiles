@@ -1,12 +1,15 @@
+local terminal = "kitty"
+local fileManager = "dolphin"
+local menu = "rofi -show drun"
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("$terminal"))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exit())
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("$fileManager"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("$menu"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 --bind = $mainMod, J, togglesplit, # dwindle
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("kitten quick-access-terminal"))
@@ -19,8 +22,8 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 hl.bind(mainMod .. " + 1", hl.dsp.focus({ workspace = 1 }))
-hl.bind(mainMod .. " + 2", hl.dsp.focus({ workspace = 2 }))
-hl.bind(mainMod .. " + 3", hl.dsp.focus({ workspace = 3 }))
+hl.bind(mainMod .. " + 3", hl.dsp.focus({ workspace = 2 }))
+hl.bind(mainMod .. " + 2", hl.dsp.focus({ workspace = 3 }))
 hl.bind(mainMod .. " + 4", hl.dsp.focus({ workspace = 4 }))
 hl.bind(mainMod .. " + 5", hl.dsp.focus({ workspace = 5 }))
 hl.bind(mainMod .. " + 6", hl.dsp.focus({ workspace = 6 }))
@@ -45,6 +48,7 @@ hl.bind(mainMod .. " + SHIFT + 9", hl.dsp.window.move({ workspace = 9 }))
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("notes"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special("terminal"))
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:terminal" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
