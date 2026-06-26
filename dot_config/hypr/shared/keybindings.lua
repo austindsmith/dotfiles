@@ -22,8 +22,8 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 hl.bind(mainMod .. " + 1", hl.dsp.focus({ workspace = 1 }))
-hl.bind(mainMod .. " + 3", hl.dsp.focus({ workspace = 2 }))
-hl.bind(mainMod .. " + 2", hl.dsp.focus({ workspace = 3 }))
+hl.bind(mainMod .. " + 2", hl.dsp.focus({ workspace = 2 }))
+hl.bind(mainMod .. " + 3", hl.dsp.focus({ workspace = 3 }))
 hl.bind(mainMod .. " + 4", hl.dsp.focus({ workspace = 4 }))
 hl.bind(mainMod .. " + 5", hl.dsp.focus({ workspace = 5 }))
 hl.bind(mainMod .. " + 6", hl.dsp.focus({ workspace = 6 }))
