@@ -88,6 +88,8 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- SECTION 1: OPTIONS
 -- Core Neovim settings, leaders, options, basic keymaps, basic autocmds
 -- ============================================================
+
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- Enable faster startup by caching compiled Lua modules
 	vim.loader.enable()
@@ -179,6 +181,8 @@ end
 -- SECTION 2: KEYMAPS
 -- basic keymaps
 -- ============================================================
+
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- [[ Basic Keymaps ]]
 	--  See `:help vim.keymap.set()`
@@ -284,6 +288,7 @@ do
 	--  In this section we set up some autocommands to run build
 	--  steps for certain plugins after they are installed or updated.
 
+	--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 	local function run_build(name, cmd, cwd)
 		local result = vim.system(cmd, { cwd = cwd }):wait()
 		if result.code ~= 0 then
@@ -301,6 +306,8 @@ do
 	--  runs the appropriate build command for that plugin if necessary.
 	--
 	-- See `:help vim.pack-events`
+	--
+	--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 	vim.api.nvim_create_autocmd("PackChanged", {
 		callback = function(ev)
 			local name = ev.data.spec.name
@@ -344,6 +351,8 @@ end
 -- SECTION 4: UI / CORE UX PLUGINS
 -- guess-indent, gitsigns, which-key, colorscheme, todo-comments, mini modules
 -- ============================================================
+--
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- [[ Installing and Configuring Plugins ]]
 	--
@@ -470,6 +479,8 @@ end
 -- SECTION 5: SEARCH & NAVIGATION
 -- Telescope setup, keymaps, LSP picker mappings
 -- ============================================================
+--
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- [[ Fuzzy Finder (files, lsp, etc) ]]
 	--
@@ -614,6 +625,8 @@ end
 -- SECTION 6: LSP
 -- LSP keymaps, server configuration, Mason tools installations
 -- ============================================================
+--
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- [[ LSP Configuration ]]
 	-- Brief aside: **What is LSP?**
@@ -786,6 +799,8 @@ end
 -- SECTION 7: FORMATTING
 -- conform.nvim setup and keymap
 -- ============================================================
+
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- [[ Formatting ]]
 	vim.pack.add({ gh("stevearc/conform.nvim") })
@@ -826,6 +841,8 @@ end
 -- SECTION 8: AUTOCOMPLETE & SNIPPETS
 -- blink.cmp and luasnip setup
 -- ============================================================
+
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- [[ Snippet Engine ]]
 
@@ -908,6 +925,8 @@ end
 -- SECTION 9: TREESITTER
 -- Parser installation, syntax highlighting, folds, indentation
 -- ============================================================
+
+--selene: allow(unscoped_variables, if_same_then_else, mixed_table, undefined_variable)
 do
 	-- [[ Configure Treesitter ]]
 	--  Used to highlight, edit, and navigate code
