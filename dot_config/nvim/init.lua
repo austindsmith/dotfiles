@@ -369,7 +369,13 @@ do
 	-- and then call its `setup()` function to start it with default settings.
 	vim.pack.add({ gh("NMAC427/guess-indent.nvim") })
 	require("guess-indent").setup({})
+	vim.pack.add({ { src = "https://github.com/catppuccin/nvim", name = "catppuccin" } })
 
+	require("catppuccin").setup({
+		flavour = "macchiato",
+	})
+
+	vim.cmd.colorscheme("catppuccin")
 	-- Here is a more advanced configuration example that passes options to `gitsigns.nvim`
 	--
 	-- See `:help gitsigns` to understand what each configuration key does.
