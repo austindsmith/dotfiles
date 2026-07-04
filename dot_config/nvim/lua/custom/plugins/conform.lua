@@ -8,6 +8,12 @@ local function should_skip_format(bufnr)
 end
 
 require("conform").setup({
+	log_level = vim.log.levels.DEBUG,
+	formatters = {
+		mdformat = {
+			command = vim.fn.expand("~/.local.bin/mdformat"),
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "ruff_format" },
