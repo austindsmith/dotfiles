@@ -11,6 +11,12 @@ vim.keymap.set("n", "\\", "<Cmd>Neotree reveal<CR>", { desc = "NeoTree toggle", 
 
 require("neo-tree").setup({
 	filesystem = {
+		filtered_items = {
+			visible = true,
+			hide_dotfiles = false,
+			hide_gitignored = false,
+			hide_hidden = false,
+		},
 		follow_current_file = {
 			enabled = true,
 			leave_dirs_open = false,
@@ -22,4 +28,11 @@ require("neo-tree").setup({
 			},
 		},
 	},
+})
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argc() == 0 then
+			require("neo-tree.command").execute({ action = "show" })
+		end
+	end,
 })

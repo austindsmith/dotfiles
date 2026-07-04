@@ -28,13 +28,46 @@ alias clip="kitten clipboard"
 ###################################################
 # Creates headers like above this line and pipes to the kitten clipboard.
 cbox() {
-    local text="$1"
-    local design="${2:-shell}"
-    local padding="${3:-h4v1}"
-    local size="${4:-51x3}"
-    echo "$text" | boxes -d "$design" -p "$padding" -s "$size" -a c | kitten clipboard
-}
+    local lang="shell"
+    local padding="h4v1"
+    local size="51x3"
+    local text=""
 
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --lua|--sql|--ada)
+                lang="ada-cmt"
+                shift
+                ;;
+            --c|--cpp|--java|--go|--rust)
+                lang="c-cmt2"
+                shift
+                ;;
+            --py|--python|--sh|--shell)
+                lang="shell"
+                shift
+                ;;
+            --design)
+                lang="$2"
+                shift 2
+                ;;
+            --padding)
+                padding="$2"
+                shift 2
+                ;;
+            --size)
+                size="$2"
+                shift 2
+                ;;
+            *)
+                text="$1"
+                shift
+                ;;
+        esac
+    done
+
+    echo "$text" | boxes -d "$lang" -p "$padding" -s "$size" -a c | kitten clipboard
+}
 # Quick tunneling to Cloudnative PG databases
 db-tunnel() {
   tsh proxy db --tunnel --port=5432 "$1" --db-user="$2" --db-name="${3:-postgres}"

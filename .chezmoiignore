@@ -7,3 +7,13 @@
 .config/packer/plugins
 .config/nvim/lazy-lock.json
 .config/rofi/plugins
+.config/vesktop/Singleton*
+.config/vesktop/Cache
+.config/vesktop/GPUCache
+.config/vesktop/blob_storage
+.config/vesktop/Code Cache
+.config/vesktop/sessionData
+.config/micro/buffers/**
+.config/nvim/nvim-pack-lock.json
+.local/share/zed/extensions/index.json
+

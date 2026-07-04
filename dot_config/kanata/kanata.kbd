@@ -1,9 +1,18 @@
-;; maps capslock to left control button
+;; Rebinds CAPS LOCK to be ESC when pressed and MAIN MOD when held
 (defcfg
-  input (device-file "/dev/input/by-id/usb-Razer_Razer_BlackWidow_V4-event-kbd")
-  output (uinput-sink "kanata")
+  linux-dev /dev/input/by-id/usb-Razer_Razer_BlackWidow_V4-event-kbd
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
 )
-(defsrc 
-  caps)
+(defsrc
+  caps
+)
+(defalias
+  capesc (tap-hold 200 200 esc lmet)
+)
 (deflayer base
-  lctl)
+  @capesc
+)
+(defchordsv2
+  (j k) esc 50 all-released ()
+)
