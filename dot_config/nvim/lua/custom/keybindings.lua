@@ -50,9 +50,16 @@ do
 	vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 	vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
-	-- Keybinds to make split navigation easier.
-	--  Use CTRL+<hjkl> to switch between windows
-	--
+	--  Keybindings to navigate between buffers
+
+	vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>")
+	vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>")
+	vim.keymap.set("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>")
+	vim.keymap.set("n", "<leader>2", "<cmd>BufferLineGoToBuffer 2<CR>")
+
+	-- Keybindings to close buffers
+
+	vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>")
 	--  See `:help wincmd` for a list of all window commands
 	vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 	vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
