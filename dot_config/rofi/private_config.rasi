@@ -1,0 +1,48 @@
+configuration {
+    modes: [
+        combi,
+        drun,
+        run,
+        "hosts:~/.config/rofi/plugins/rofi-ssh",
+        window,
+        filebrowser,
+        "clipboard:~/.config/rofi/plugins/cliphist-rofi-img",
+        "1pass:~/.config/rofi/plugins/rofi-1pass"
+    ];
+    combi-modes: [ drun, run, "hosts:~/.config/rofi/plugins/rofi-ssh", window, filebrowser ];
+
+    show-icons: true;
+    icon-theme: "candy-icons";
+    application-fallback-icon: "application-x-executable";
+
+    terminal: "kitty";
+
+    drun-show-actions: true;
+    drun-display-format: "{name} <span size='small' alpha='55%'><i>{generic}</i></span>";
+    window-format: "{c} · {t}";
+
+    matching: "fuzzy";
+    sort: true;
+    sorting-method: "fzf";
+    sidebar-mode: true;
+
+    display-combi:       "󰡦";
+    display-drun:        "󰀻";
+    display-run:         "󰅴";
+    display-hosts:       "󰣀";
+    display-window:      "󰖯";
+    display-filebrowser: "󰉋";
+    display-clipboard:   "󰅍";
+    display-1pass:       "󰌾";
+
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
+}
+
+@theme "themes/lodge"

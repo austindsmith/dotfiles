@@ -6,7 +6,6 @@
 .config/packer/checkpoint*
 .config/packer/plugins
 .config/nvim/lazy-lock.json
-.config/rofi/plugins
 .config/vesktop/Singleton*
 .config/vesktop/Cache
 .config/vesktop/GPUCache

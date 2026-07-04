@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+config="$HOME/.ssh/config"
+
+if [[ -n "${ROFI_INFO:-}" ]]; then
+    setsid -f kitty -e ssh "$ROFI_INFO" >/dev/null 2>&1
+    exit 0
+fi
+
+printf '\0prompt\x1fSSH\n'
+printf '\0markup-rows\x1ftrue\n'
+printf '\0no-custom\x1ftrue\n'
+
+icon_for() {
+    case "$1" in
+        github*)          echo "github-desktop" ;;
+        gitlab*)          echo "gitlab" ;;
+        k8s*|*lodge*)     echo "computer" ;;
+        *)                echo "network-server" ;;
+    esac
+}
+
+parse_hosts() {
+    awk '
+        function flush() {
+            for (i = 1; i <= n; i++) print aliases[i] "\t" hn "\t" us
+        }
+        tolower($1) == "host" {
+            flush()
+            n = 0; hn = ""; us = ""
+            for (i = 2; i <= NF; i++) if ($i !~ /[*?]/) aliases[++n] = $i
+            next
+        }
+        tolower($1) == "hostname" { hn = $2 }
+        tolower($1) == "user"     { us = $2 }
+        END { flush() }
+    ' "$config"
+}
+
+parse_hosts | sort | while IFS=$'\t' read -r host hostname user; do
+    [[ -z "$host" ]] && continue
+    detail="$hostname"
+    if [[ -n "$user" && -n "$hostname" ]]; then
+        detail="$user@$hostname"
+    fi
+    label="$host"
+    if [[ -n "$detail" ]]; then
+        label="$host  <span size='small' alpha='50%'>$detail</span>"
+    fi
+    printf '%s\0info\x1f%s\x1ficon\x1f%s\n' "$label" "$host" "$(icon_for "$host")"
+done

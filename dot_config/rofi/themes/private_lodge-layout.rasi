@@ -1,0 +1,135 @@
+* {
+    font: "JetBrainsMono Nerd Font 13";
+
+    background-color: transparent;
+    text-color:       @fg;
+
+    margin:  0px;
+    padding: 0px;
+    spacing: 0px;
+}
+
+window {
+    location:         center;
+    width:            740px;
+    border:           2px;
+    border-color:     @accent;
+    border-radius:    20px;
+    background-color: @bg-window;
+}
+
+mainbox {
+    padding:  14px;
+    children: [ inputbar, message, listview, mode-switcher ];
+}
+
+inputbar {
+    background-color: @bg-raised;
+    border:           2px;
+    border-color:     @border-soft;
+    border-radius:    14px;
+    padding:          10px 16px;
+    spacing:          10px;
+    children:         [ prompt, entry, num-filtered-rows, textbox-num-sep, num-rows ];
+}
+
+prompt {
+    text-color:     @accent;
+    vertical-align: 0.5;
+}
+
+entry {
+    placeholder:       "Type to search";
+    placeholder-color: @fg-muted;
+    vertical-align:    0.5;
+    cursor:            text;
+}
+
+num-filtered-rows, num-rows, textbox-num-sep {
+    expand:         false;
+    text-color:     @fg-muted;
+    vertical-align: 0.5;
+}
+
+textbox-num-sep {
+    str: "/";
+}
+
+message {
+    margin:           12px 0px 0px;
+    border-radius:    14px;
+    background-color: @bg-raised;
+}
+
+textbox {
+    padding:    10px 16px;
+    text-color: @fg-dim;
+}
+
+listview {
+    margin:       12px 0px 0px;
+    lines:        8;
+    columns:      1;
+    spacing:      3px;
+    fixed-height: false;
+    scrollbar:    false;
+    cursor:       default;
+}
+
+element {
+    padding:       7px 12px;
+    spacing:       12px;
+    border-radius: 12px;
+    cursor:        pointer;
+}
+
+element normal urgent, element alternate urgent {
+    text-color: @danger;
+}
+
+element normal active, element alternate active {
+    text-color: @success;
+}
+
+element selected normal {
+    background-color: @accent;
+    text-color:       @selected-fg;
+}
+
+element selected active {
+    background-color: @success;
+    text-color:       @selected-fg;
+}
+
+element selected urgent {
+    background-color: @danger;
+    text-color:       @selected-fg;
+}
+
+element-icon {
+    size:           1.5em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color:     inherit;
+    vertical-align: 0.5;
+}
+
+mode-switcher {
+    margin:  12px 0px 0px;
+    spacing: 6px;
+}
+
+button {
+    padding:          8px 0px;
+    border-radius:    12px;
+    background-color: @bg-raised;
+    text-color:       @fg-dim;
+    cursor:           pointer;
+}
+
+button selected {
+    background-color: @accent;
+    text-color:       @selected-fg;
+}

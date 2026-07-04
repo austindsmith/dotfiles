@@ -1,0 +1,18 @@
+* {
+    accent:      #91d7e3;
+    selected-fg: #181926;
+
+    bg-window: rgba(24, 25, 38, 88%);
+    bg-raised: rgba(54, 58, 79, 55%);
+
+    border-soft: #494d64;
+
+    fg:       #cad3f5;
+    fg-dim:   #a5adcb;
+    fg-muted: #6e738d;
+
+    danger:  #ed8796;
+    success: #a6da95;
+}
+
+@import "lodge-layout.rasi"

@@ -1,0 +1,20 @@
+@import "colors.rasi"
+
+* {
+    accent:      @primary;
+    selected-fg: @on-primary;
+
+    bg-window: @surface-container-low;
+    bg-raised: @surface-container-high;
+
+    border-soft: @outline-variant;
+
+    fg:       @on-surface;
+    fg-dim:   @on-surface-variant;
+    fg-muted: @outline;
+
+    danger:  @error;
+    success: @tertiary;
+}
+
+@import "lodge-layout.rasi"

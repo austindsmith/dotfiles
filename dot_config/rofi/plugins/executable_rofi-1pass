@@ -6,20 +6,26 @@ notify() {
 }
 
 copy() {
-    printf '%s' "$1" | wl-copy
+    printf '%s' "$1" | wl-copy >/dev/null 2>&1
 }
 
 list_items() {
-    op item list --format json | jq -r '.[] | "\(.title)\u0000info\u001fitem:\(.id)"'
+    printf '\0prompt\x1f1Password\n'
+    printf '\0no-custom\x1ftrue\n'
+    op item list --format json |
+        jq -r '.[] | "\(.title)\u0000info\u001fitem:\(.id)\u001ficon\u001f1password"'
 }
 
 list_actions() {
     local id="$1"
-    printf 'Copy password\u0000info\u001faction:%s:password\n' "$id"
-    printf 'Copy username\u0000info\u001faction:%s:username\n' "$id"
-    printf 'Copy OTP\u0000info\u001faction:%s:otp\n' "$id"
-    printf 'Copy URL\u0000info\u001faction:%s:url\n' "$id"
-    printf 'Open URL\u0000info\u001faction:%s:open\n' "$id"
+    printf '\0prompt\x1f1Password\n'
+    printf '\0no-custom\x1ftrue\n'
+    printf 'Copy password\0info\x1faction:%s:password\x1ficon\x1fdialog-password\n' "$id"
+    printf 'Copy username\0info\x1faction:%s:username\x1ficon\x1favatar-default\n' "$id"
+    printf 'Copy OTP\0info\x1faction:%s:otp\x1ficon\x1fclock\n' "$id"
+    printf 'Copy URL\0info\x1faction:%s:url\x1ficon\x1femblem-web\n' "$id"
+    printf 'Open URL\0info\x1faction:%s:open\x1ficon\x1fweb-browser\n' "$id"
+    printf 'Back\0info\x1fback\x1ficon\x1fgo-previous\n'
 }
 
 run_action() {
@@ -48,27 +54,28 @@ run_action() {
             ;;
         open)
             value=$(op item get "$id" --format json | jq -r '.urls[0].href // empty')
-            xdg-open "$value"
+            xdg-open "$value" >/dev/null 2>&1
             ;;
     esac
 }
 
-data="${ROFI_DATA:-}"
+info="${ROFI_INFO:-}"
 
-if [[ -z "$data" ]]; then
+if [[ -z "$info" || "$info" == "back" ]]; then
     list_items
     exit 0
 fi
 
-if [[ "$data" == item:* ]]; then
-    list_actions "${data#item:}"
+if [[ "$info" == item:* ]]; then
+    list_actions "${info#item:}"
     exit 0
 fi
 
-if [[ "$data" == action:* ]]; then
-    rest="${data#action:}"
+if [[ "$info" == action:* ]]; then
+    rest="${info#action:}"
     id="${rest%%:*}"
     action="${rest##*:}"
-    run_action "$id" "$action"
+    run_action "$id" "$action" >/dev/null 2>&1 &
+    disown
     exit 0
 fi

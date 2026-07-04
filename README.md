@@ -8,6 +8,17 @@
 - Ditto
 - AutoHotkey
 
+## Icons
+
+Candy icons
+
+```zsh
+rm -rf ~/.local/share/icons/candy-icons
+cd /tmp
+git clone https://github.com/EliverLara/candy-icons.git
+cp -r candy-icons ~/.local/share/icons/
+```
+
 ## zsh
 
 Plugin manager: [antidote](https://antidote.sh/)
