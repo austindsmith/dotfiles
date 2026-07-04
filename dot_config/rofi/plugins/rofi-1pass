@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+notify() {
+    notify-send -t 2000 "1Password" "$1"
+}
+
+copy() {
+    printf '%s' "$1" | wl-copy
+}
+
+list_items() {
+    op item list --format json | jq -r '.[] | "\(.title)\u0000info\u001fitem:\(.id)"'
+}
+
+list_actions() {
+    local id="$1"
+    printf 'Copy password\u0000info\u001faction:%s:password\n' "$id"
+    printf 'Copy username\u0000info\u001faction:%s:username\n' "$id"
+    printf 'Copy OTP\u0000info\u001faction:%s:otp\n' "$id"
+    printf 'Copy URL\u0000info\u001faction:%s:url\n' "$id"
+    printf 'Open URL\u0000info\u001faction:%s:open\n' "$id"
+}
+
+run_action() {
+    local id="$1" action="$2" value
+
+    case "$action" in
+        password)
+            value=$(op item get "$id" --fields label=password --reveal)
+            copy "$value"
+            notify "Password copied"
+            ;;
+        username)
+            value=$(op item get "$id" --fields label=username --reveal)
+            copy "$value"
+            notify "Username copied"
+            ;;
+        otp)
+            value=$(op item get "$id" --otp)
+            copy "$value"
+            notify "OTP copied"
+            ;;
+        url)
+            value=$(op item get "$id" --format json | jq -r '.urls[0].href // empty')
+            copy "$value"
+            notify "URL copied"
+            ;;
+        open)
+            value=$(op item get "$id" --format json | jq -r '.urls[0].href // empty')
+            xdg-open "$value"
+            ;;
+    esac
+}
+
+data="${ROFI_DATA:-}"
+
+if [[ -z "$data" ]]; then
+    list_items
+    exit 0
+fi
+
+if [[ "$data" == item:* ]]; then
+    list_actions "${data#item:}"
+    exit 0
+fi
+
+if [[ "$data" == action:* ]]; then
+    rest="${data#action:}"
+    id="${rest%%:*}"
+    action="${rest##*:}"
+    run_action "$id" "$action"
+    exit 0
+fi
