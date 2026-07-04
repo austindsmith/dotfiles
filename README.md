@@ -1,4 +1,14 @@
-# zsh
+## Windows ideas
+
+- GlazeWM
+- YASB
+- YASB Quick Launch
+- Wezterm/Windows Terminal
+- Yazi
+- Ditto
+- AutoHotkey
+
+## zsh
 
 Plugin manager: [antidote](https://antidote.sh/)
 

@@ -10,9 +10,11 @@
 .config/vesktop/Singleton*
 .config/vesktop/Cache
 .config/vesktop/GPUCache
-.config/vesktop/blob_storage
+.config/vesktop/Crashpad/**
+config/vesktop/blob_storage
 .config/vesktop/Code Cache
-.config/vesktop/sessionData
+.config/vesktop/state.json
+config/vesktop/sessionData/**
 .config/micro/buffers/**
 .config/nvim/nvim-pack-lock.json
 .local/share/zed/extensions/index.json
