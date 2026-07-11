@@ -1,4 +1,7 @@
 vim.pack.add({
+  'https://github.com/echasnovski/mini.nvim',
+})
+vim.pack.add({
 	"https://github.com/rmagatti/auto-session",
 })
 require("auto-session").setup({
