@@ -44,10 +44,10 @@ hl.bind(mainMod .. " + SHIFT + 8", hl.dsp.window.move({ workspace = 8 }))
 hl.bind(mainMod .. " + SHIFT + 9", hl.dsp.window.move({ workspace = 9 }))
 --bind = $mainMod SHIFT, 0, movetoworkspace, terminals
 
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("notes"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:notes" }))
-hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special("1password"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:1password" }))
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special(""))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:" }))
+hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special(""))
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

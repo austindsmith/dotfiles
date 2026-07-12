@@ -61,7 +61,7 @@ PanelWindow {
                     property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
                     property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
 
-                    implicitWidth: 24
+                    implicitWidth: 26
                     implicitHeight: 22
                     radius: 6
                     color: isActive ? Theme.selection : "transparent"
@@ -83,6 +83,11 @@ PanelWindow {
                     }
                 }
             }
+            Rectangle {
+                implicitWidth: 1
+                implicitHeight: 16
+                color: Theme.bronze
+            }
             Repeater {
                 model: ScriptModel {
                     values: Hyprland.workspaces.values.filter(w => w.id < 0)
@@ -95,7 +100,7 @@ PanelWindow {
                     readonly property string shortName: modelData.name.replace("special:", "")
                     readonly property bool shown: root.activeSpecial === modelData.name
 
-                    implicitWidth: label.implicitWidth + 12
+                    implicitWidth: label.implicitWidth + 20
                     implicitHeight: 22
                     radius: 6
                     color: shown ? Theme.selectionPurple : "transparent"

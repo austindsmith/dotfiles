@@ -49,7 +49,7 @@ PanelWindow {
         RowLayout {
             IconImage {
                 Layout.leftMargin: 10
-                source: Quickshell.iconPath("nix-snowflake", true)
+                source: Quickshell.iconPath("Lyra-dark", true)
                 Layout.preferredWidth: 25
                 Layout.preferredHeight: 25
             }

@@ -67,7 +67,11 @@
   "session": {
     "trust_all_worktrees": true
   },
-  "icon_theme": "Soft Charmed Icons",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Soft Charmed Icons",
+    "dark": "Soft Charmed Icons"
+  },
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
