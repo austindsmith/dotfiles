@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "autosave": "on_focus_change",
   "auto_indent_on_paste": false,
   "terminal": {
     "toolbar": {
@@ -71,7 +72,7 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Catppuccin Macchiato"
+    "dark": "Oxocarbon Dark (IBM Carbon)"
   },
   "languages": {
     "Python": {
