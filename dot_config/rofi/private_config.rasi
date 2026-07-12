@@ -6,13 +6,13 @@ configuration {
         "hosts:~/.config/rofi/plugins/rofi-ssh",
         window,
         filebrowser,
-        "clipboard:~/.config/rofi/plugins/cliphist-rofi-img",
-        "1pass:~/.config/rofi/plugins/rofi-1pass"
+        "clipboard:~/.config/rofi/plugins/cliphist-rofi-img"
+       //"1pass:~/.config/rofi/plugins/rofi-1pass"
     ];
     combi-modes: [ drun, run, "hosts:~/.config/rofi/plugins/rofi-ssh", window, filebrowser ];
 
     show-icons: true;
-    icon-theme: "candy-icons";
+    icon-theme: "Lyra-dark";
     application-fallback-icon: "application-x-executable";
 
     terminal: "kitty";

@@ -1,0 +1,117 @@
+body {
+    --font-size-normal: 14px;
+    --font-family-mono: "JetBrainsMono Nerd Font";
+    --background-opacity: 0.8;
+
+    --clr-transparent: #00000000;
+    --clr-black: #000000;
+    --clr-blue: #5ac1fe;
+    --clr-blue-alt: #59c2ff;
+    --clr-cyan: #39bae5;
+    --clr-aqua: #95e5cb;
+    --clr-aqua-alt: #95e6cb;
+    --clr-green: #aad84c;
+    --clr-green-alt: #a9d94b;
+    --clr-mint: #77dd77;
+    --clr-gold: #feb454;
+    --clr-gold-alt: #ffb353;
+    --clr-orange: #fe8f40;
+    --clr-orange-alt: #ff8f3f;
+    --clr-sand: #e5b572;
+    --clr-peach: #f29668;
+    --clr-red: #ef7177;
+    --clr-purple: #d2a6fe;
+    --clr-purple-alt: #d2a6ff;
+    --clr-bronze: #997700;
+    --clr-text: #bfbdb6;
+    --clr-text-muted: #a6a5a0;
+    --clr-text-dim: #8c8b88;
+    --clr-sage: #628b80;
+    --clr-slate: #5a728b;
+    --clr-steel: #5577aa;
+    --clr-gray: #555555;
+    --clr-charcoal: #333333;
+
+    --clr-background: #000000dd;
+    --clr-surface: #ffffff19;
+    --clr-surface-strong: #ffffff33;
+    --clr-surface-hover: #ffffff44;
+    --clr-shadow: #00000011;
+
+    --clr-selection: #66aadd88;
+    --clr-selection-blue: #39bae53d;
+    --clr-selection-orange: #fe8f403d;
+    --clr-selection-purple: #d2a6fe3d;
+    --clr-selection-aqua: #95e5cb3d;
+    --clr-selection-red: #ef71773d;
+    --clr-selection-gold: #feb4543d;
+    --clr-selection-green: #aad84c3d;
+
+    --clr-positive: #00ff00bb;
+    --clr-negative: #ff0000bb;
+    --clr-caution: #ffff00bb;
+
+    --clr-accent: var(--clr-blue);
+    --clr-accent-warm: var(--clr-orange);
+    --clr-highlight: var(--clr-bronze);
+    --clr-muted: var(--clr-gray);
+}
+
+.theme-dark {
+    --background-primary: #0d1017;
+    --background-primary-alt: #10141c;
+    --background-secondary: #0b0e14;
+    --background-secondary-alt: #10141c;
+    --background-modifier-hover: var(--clr-surface);
+    --background-modifier-active-hover: var(--clr-surface-strong);
+    --background-modifier-border: var(--clr-charcoal);
+    --background-modifier-border-hover: var(--clr-gray);
+    --background-modifier-border-focus: var(--clr-accent);
+
+    --text-normal: var(--clr-text);
+    --text-muted: var(--clr-text-muted);
+    --text-faint: var(--clr-text-dim);
+    --text-accent: var(--clr-accent);
+    --text-accent-hover: var(--clr-blue-alt);
+    --text-selection: var(--clr-selection-blue);
+    --text-highlight-bg: var(--clr-selection-gold);
+
+    --interactive-accent: var(--clr-accent);
+    --interactive-accent-hover: var(--clr-blue-alt);
+
+    --link-color: var(--clr-blue);
+    --link-color-hover: var(--clr-cyan);
+    --link-external-color: var(--clr-aqua);
+    --link-external-color-hover: var(--clr-cyan);
+    --link-unresolved-color: var(--clr-red);
+
+    --h1-color: var(--clr-orange);
+    --h2-color: var(--clr-gold);
+    --h3-color: var(--clr-green);
+    --h4-color: var(--clr-aqua);
+    --h5-color: var(--clr-blue);
+    --h6-color: var(--clr-purple);
+
+    --bold-color: var(--clr-gold);
+    --italic-color: var(--clr-purple);
+    --blockquote-border-color: var(--clr-slate);
+    --code-normal: var(--clr-peach);
+    --code-background: var(--clr-surface);
+    --tag-color: var(--clr-aqua);
+    --tag-background: var(--clr-selection-aqua);
+    --hr-color: var(--clr-charcoal);
+    --checkbox-color: var(--clr-green);
+    --checkbox-color-hover: var(--clr-green-alt);
+    --checkbox-border-color: var(--clr-gray);
+    --list-marker-color: var(--clr-text-dim);
+
+    --scrollbar-thumb-bg: var(--clr-surface-strong);
+    --scrollbar-active-thumb-bg: var(--clr-surface-hover);
+
+    --font-monospace-theme: var(--font-family-mono), monospace;
+    --code-size: var(--font-size-normal);
+}
+
+.theme-dark ::selection {
+    background: var(--clr-selection-blue);
+}

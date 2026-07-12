@@ -1,0 +1,208 @@
+{
+  "recentFiles": [
+    {
+      "basename": "Bowling Roguelike Game Idea",
+      "path": "Coding/Bowling Roguelike Game Idea.md"
+    },
+    {
+      "basename": "Resume",
+      "path": "Career/Resume.md"
+    },
+    {
+      "basename": "Chezmoi Quickshell Dev",
+      "path": "Inbox/Generated/Chezmoi Quickshell Dev.md"
+    },
+    {
+      "basename": "Offline NeoVim Exports",
+      "path": "Inbox/Generated/Offline NeoVim Exports.md"
+    },
+    {
+      "basename": "SQL Server Functions",
+      "path": "Inbox/Generated/SQL Server Functions.md"
+    },
+    {
+      "basename": "EdFi Docs",
+      "path": "Inbox/Generated/EdFi Docs.md"
+    },
+    {
+      "basename": "EdFi Joins",
+      "path": "Inbox/Generated/EdFi Joins.md"
+    },
+    {
+      "basename": "NMPED dbt",
+      "path": "Inbox/Generated/NMPED dbt.md"
+    },
+    {
+      "basename": "CNPG Connections",
+      "path": "Inbox/Generated/CNPG Connections.md"
+    },
+    {
+      "basename": "CNPG Certs",
+      "path": "Inbox/Generated/CNPG Certs.md"
+    },
+    {
+      "basename": "07-09-2026",
+      "path": "Inbox/Daily Notes/07-09-2026.md"
+    },
+    {
+      "basename": "Kubernetes Reconciling Issues",
+      "path": "Inbox/Generated/Kubernetes Reconciling Issues.md"
+    },
+    {
+      "basename": "06-28-2026",
+      "path": "Inbox/Daily Notes/06-28-2026.md"
+    },
+    {
+      "basename": "06-24-2026",
+      "path": "Inbox/Daily Notes/06-24-2026.md"
+    },
+    {
+      "basename": "Netcup Migration Plan",
+      "path": "Inbox/Generated/Netcup Migration Plan.md"
+    },
+    {
+      "basename": "Cloud Migration Plan",
+      "path": "Homelab/Cloud Migration Plan.md"
+    },
+    {
+      "basename": "Documentation Website Plans",
+      "path": "Homelab/Documentation Website Plans.md"
+    },
+    {
+      "basename": "Re-Organization",
+      "path": "Homelab/Re-Organization.md"
+    },
+    {
+      "basename": "Issues",
+      "path": "Homelab/Issues.md"
+    },
+    {
+      "basename": "06-21-2026",
+      "path": "Inbox/Daily Notes/06-21-2026.md"
+    },
+    {
+      "basename": "06-17-2026",
+      "path": "Inbox/Daily Notes/06-17-2026.md"
+    },
+    {
+      "basename": "Homelab Structure",
+      "path": "Inbox/Generated/Homelab Structure.md"
+    },
+    {
+      "basename": "Applications",
+      "path": "Career/Applications.md"
+    },
+    {
+      "basename": "Proxy",
+      "path": "Inbox/Generated/Proxy.md"
+    },
+    {
+      "basename": "05-30-2026",
+      "path": "Inbox/Daily Notes/05-30-2026.md"
+    },
+    {
+      "basename": "05-25-2026",
+      "path": "Inbox/Daily Notes/05-25-2026.md"
+    },
+    {
+      "basename": "05-21-2026",
+      "path": "Inbox/Daily Notes/05-21-2026.md"
+    },
+    {
+      "basename": "05-17-2026",
+      "path": "Inbox/Daily Notes/05-17-2026.md"
+    },
+    {
+      "basename": "05-15-2026",
+      "path": "Inbox/Daily Notes/05-15-2026.md"
+    },
+    {
+      "basename": "Documenting Python",
+      "path": "Inbox/Generated/Documenting Python.md"
+    },
+    {
+      "basename": "Keeping Track of Functions in Python",
+      "path": "Inbox/Generated/Keeping Track of Functions in Python.md"
+    },
+    {
+      "basename": "Auditing Python Packages",
+      "path": "Inbox/Generated/Auditing Python Packages.md"
+    },
+    {
+      "basename": "05-09-2026",
+      "path": "Inbox/Daily Notes/05-09-2026.md"
+    },
+    {
+      "basename": "05-06-2026",
+      "path": "Inbox/Daily Notes/05-06-2026.md"
+    },
+    {
+      "basename": "05-05-2026",
+      "path": "Inbox/Daily Notes/05-05-2026.md"
+    },
+    {
+      "basename": "Python",
+      "path": "Coding/Python.md"
+    },
+    {
+      "basename": "general tips",
+      "path": "Linux/dotfiles/hyprland/general tips.md"
+    },
+    {
+      "basename": "index",
+      "path": "Linux/index.md"
+    },
+    {
+      "basename": "05-02-2026",
+      "path": "Inbox/Daily Notes/05-02-2026.md"
+    },
+    {
+      "basename": "VS Code",
+      "path": "Cheatsheets/VS Code.md"
+    },
+    {
+      "basename": "Create an Ubuntu 24.04 Template with Cloud-Init on Proxmox",
+      "path": "Inbox/Clippings/Create an Ubuntu 24.04 Template with Cloud-Init on Proxmox.md"
+    },
+    {
+      "basename": "05-01-2026",
+      "path": "Inbox/Daily Notes/05-01-2026.md"
+    },
+    {
+      "basename": "ssh",
+      "path": "Linux/guides/ssh.md"
+    },
+    {
+      "basename": "04-30-2026",
+      "path": "Inbox/Daily Notes/04-30-2026.md"
+    },
+    {
+      "basename": "04-26-2026",
+      "path": "Inbox/Daily Notes/04-26-2026.md"
+    },
+    {
+      "basename": "04-24-2026",
+      "path": "Inbox/Daily Notes/04-24-2026.md"
+    },
+    {
+      "basename": "Templates to consider",
+      "path": "Homelab/terraform/Templates to consider.md"
+    },
+    {
+      "basename": "Templates to consider",
+      "path": "Homelab/packer/Templates to consider.md"
+    },
+    {
+      "basename": "helm",
+      "path": "Homelab/kubernetes/helm.md"
+    },
+    {
+      "basename": "bootstrapping",
+      "path": "Homelab/kubernetes/bootstrapping.md"
+    }
+  ],
+  "omittedPaths": [],
+  "omittedTags": [],
+  "updateOn": "file-open",
+  "omitBookmarks": false
+}

@@ -1,8 +1,18 @@
 encryption = "age"
+
 [age]
 identity = "{{ .chezmoi.homeDir }}/.config/sops/age/keys.txt"
-recipients = ["age1702zeej6q48plcgchfy9l68p9jegsryj3h6029rpr2t7t6resc3sa97acd", "age19azmnl8ee2f4r95jnwvr47uhllf33eq66dfc3vuxezq7k5vwqgfsyrdv8n", "age1yubikey1qvep9uz5xzds4azvlrf5vatl5gmfj48qr8huw5009quwffzvwv80c9avq5j"]
+recipients = [
+    "age1702zeej6q48plcgchfy9l68p9jegsryj3h6029rpr2t7t6resc3sa97acd",
+    "age19azmnl8ee2f4r95jnwvr47uhllf33eq66dfc3vuxezq7k5vwqgfsyrdv8n",
+    "age1yubikey1qvep9uz5xzds4azvlrf5vatl5gmfj48qr8huw5009quwffzvwv80c9avq5j"
+]
+
 [sudo]
-  command = "sudo"
+command = "sudo"
+
+[data]
+theme_active = {{ promptStringOnce . "theme_active" "active theme" "polycarbonate-ayu-dark" | quote }}
+
 [data.device]
-name = "{{ promptString "device" }}"
+name = {{ promptStringOnce . "device.name" "device" | quote }}

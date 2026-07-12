@@ -1,0 +1,29 @@
+themes:
+  polycarbonate-ayu-dark:
+    colors:
+      blue: "5ac1fe"
+      blueAlt: "59c2ff"
+      cyan: "39bae5"
+      aqua: "95e5cb"
+      green: "aad84c"
+      mint: "77dd77"
+      gold: "feb454"
+      goldAlt: "ffb353"
+      orange: "fe8f40"
+      sand: "e5b572"
+      peach: "f29668"
+      red: "ef7177"
+      purple: "d2a6fe"
+      bronze: "997700"
+      text: "bfbdb6"
+      textMuted: "a6a5a0"
+      textDim: "8c8b88"
+      sage: "628b80"
+      slate: "5a728b"
+      steel: "5577aa"
+      gray: "555555"
+      charcoal: "333333"
+      black: "000000"
+    font:
+      family: "JetBrainsMono Nerd Font"
+      size: 14

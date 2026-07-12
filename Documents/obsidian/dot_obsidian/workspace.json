@@ -1,0 +1,251 @@
+{
+  "main": {
+    "id": "cf4067976e83a335",
+    "type": "split",
+    "children": [
+      {
+        "id": "822850b4adb6c80d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "111743ed442c4a7e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Coding/Bowling Roguelike Game Idea.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bowling Roguelike Game Idea"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7b92e02fe6c7297b",
+    "type": "split",
+    "children": [
+      {
+        "id": "afeca5afe6692a87",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "431841ee3274f51c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "59510d6f99fc873b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "1a856996b5a90013",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "d44e8e0b006812d2",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "recent-files"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 245.5
+  },
+  "right": {
+    "id": "1feb8254a9448c21",
+    "type": "split",
+    "children": [
+      {
+        "id": "b6a86268e3a55895",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5087439432155b23",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Obsidian/Tasks/Things to Learn.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Things to Learn"
+            }
+          },
+          {
+            "id": "a7e555a14e936860",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Linux Plan.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Linux Plan"
+            }
+          },
+          {
+            "id": "5fcdfdc486bed64a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3c7f31b0d5439bdd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Task Dashboard.md",
+                "followCursor": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Task Dashboard"
+            }
+          },
+          {
+            "id": "3f2d58996b7b0c02",
+            "type": "leaf",
+            "state": {
+              "type": "footnotes",
+              "state": {
+                "file": "Task Dashboard.md"
+              },
+              "icon": "lucide-file-signature",
+              "title": "Footnotes"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 404.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "audio-recorder:Start/stop recording": false,
+      "markdown-importer:Open format converter": false,
+      "workspaces:Manage workspace layouts": false,
+      "publish:Publish changes...": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-importer:Open Importer": false,
+      "media-extended:Open external media": false
+    }
+  },
+  "active": "111743ed442c4a7e",
+  "lastOpenFiles": [
+    "Career/Resume.md",
+    "Inbox/Generated/Chezmoi Quickshell Dev.md",
+    "Coding/Bowling Roguelike Game Idea.md",
+    "Coding/Untitled.md",
+    "Inbox/Generated/Offline NeoVim Exports.md",
+    "Inbox/Daily Notes/07-11-2026.md",
+    "Inbox/Generated/SQL Server Functions.md",
+    "Inbox/Generated/Data warehouse repos.md",
+    "Inbox/Generated/Cloudnative PG reference repos.md",
+    "Inbox/Daily Notes/06-22-2026.md",
+    "Inbox/Daily Notes/06-23-2026.md",
+    "Inbox/Daily Notes/07-03-2026.md",
+    "Inbox/Daily Notes/06-06-2026.md",
+    "Inbox/Daily Notes/07-04-2026.md",
+    "Inbox/Daily Notes/06-09-2026.md",
+    "Inbox/Daily Notes/06-02-2026.md",
+    "Homelab/Todo.md",
+    "Inbox/Generated/EdFi Docs.md",
+    "Inbox/Generated/EdFi Joins.md",
+    "Inbox/Generated/NMPED dbt.md",
+    "Inbox/Generated/CNPG Connections.md",
+    "Inbox/Generated/CNPG Certs.md",
+    "Inbox/Daily Notes/07-09-2026.md",
+    "Inbox/Generated/Kubernetes Reconciling Issues.md",
+    "Inbox/Daily Notes/06-28-2026.md",
+    "Inbox/Generated/02 - NMPED Presentation.md",
+    "Inbox/Daily Notes/Attachments/Pasted image 20260624112635.png",
+    "Homelab/deployments/migration/terraform",
+    "Homelab/deployments/migration",
+    "Homelab/deployments",
+    "Inbox/Generated/Unconfirmed 295764.crdownload",
+    "Career",
+    "Coding",
+    "Obsidian",
+    "Planning",
+    "Work",
+    "Linux/dotfiles/Untitled/Untitled",
+    "Inbox/Daily Notes/Attachments/Pasted image 20260215171909.png",
+    "Inbox/Daily Notes/Attachments/Pasted image 20260215171843.png",
+    "Inbox/Daily Notes/Attachments/Pasted image 20260215171711.png",
+    "Inbox/Daily Notes/Attachments/Pasted image 20260120183245.png",
+    "Inbox/Daily Notes/Attachments/Pasted image 20260113181728.png",
+    "Style/Clothes/Attachments/Pasted image 20250809212121.png",
+    "Style/Clothes/Attachments/Pasted image 20250809122058.png",
+    "Style/Clothes/Attachments/Pasted image 20250809133351.png",
+    "Homelab/Attachments/Pasted image 20251212124255.png",
+    "Untitled.canvas"
+  ]
+}

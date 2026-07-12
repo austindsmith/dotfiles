@@ -1,37 +1,26 @@
---###############
---##  COLORS  ###
---###############
-
+-- COLORS
 
 require("shared.colors")
 
---###############
---## MONITORS ###
---###############
+-- MONITORS
 
 require("{{ .device.name }}.monitors")
 
---##################
---## MY PROGRAMS ###
---##################
+-- MY PROGRAMS
 
 -- See https://wiki.hypr.land/Configuring/Keywords/
 
 -- Set programs that you use
 local terminal = "kitty"
 local fileManager = "thunar"
-local menu = "rofi -show drun"
+local menu = "qs ipc call launcher toggle"
 
---################
---## EXEC-ONCE ###
---################
+-- EXEC-ONCE
 
 require("shared.autostart")
 require("shared.environment_variables")
 
---##################
---## PERMISSIONS ###
---##################
+-- PERMISSIONS
 
 -- See https://wiki.hypr.land/Configuring/Permissions/
 -- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
@@ -45,12 +34,12 @@ require("shared.environment_variables")
 -- permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, allow
 -- permission = /usr/(bin|local/bin)/hyprpm, plugin, allow
 
---####################
---## LOOK AND FEEL ###
---####################
+
+-- LOOK AND FEEL
+
 
 -- Source: ~/.config/hypr/laptop/appearance.conf — convert this file to Lua and ensure it is on Lua's package.path.
-require("{{ .device.name }}.appearance")
+require("shared.appearance")
 
 -- https://wiki.hypr.land/Configuring/Variables/#decoration
 
@@ -222,9 +211,9 @@ hl.config({
         force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
     },
-    --############
-    --## INPUT ###
-    --############
+
+    -- INPUT
+
     -- https://wiki.hypr.land/Configuring/Variables/#input
     input = {
         kb_layout = "us",

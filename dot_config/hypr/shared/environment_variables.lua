@@ -1,4 +1,5 @@
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+hl.env("QS_ICON_THEME", "Lyra-dark")
 hl.env("QT_STYLE_OVERRIDE", "Breeze")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")

@@ -1,0 +1,11 @@
+{{- if eq .device.name "laptop" -}}
+return {
+    gaps_in = 8,
+    gaps_out = 16,
+}
+{{- else -}}
+return {
+    gaps_in = 20,
+    gaps_out = 20,
+}
+{{- end }}

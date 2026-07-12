@@ -1,3 +1,7 @@
+# Dotfiles
+
+- [Color scheme](https://github.com/Sha1rholder/polycarbonate-dark-theme)
+
 ## Windows ideas
 
 - GlazeWM
