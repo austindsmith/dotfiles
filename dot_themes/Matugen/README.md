@@ -1,0 +1,39 @@
+Just uploaded this to use it in my nixos dotfiles
+
+### Matugen template
+Save this into ~/.config/matugen/templates/gtk.tmp
+```css
+@define-color accent_color {{colors.primary_fixed_dim.default.hex}};
+@define-color accent_fg_color {{colors.on_primary_fixed.default.hex}};
+@define-color accent_bg_color {{colors.primary_fixed_dim.default.hex}};
+@define-color window_bg_color {{colors.surface_dim.default.hex}};
+@define-color window_fg_color {{colors.on_surface.default.hex}};
+@define-color headerbar_bg_color {{colors.surface_dim.default.hex}};
+@define-color headerbar_fg_color {{colors.on_surface.default.hex}};
+@define-color popover_bg_color {{colors.surface_dim.default.hex}};
+@define-color popover_fg_color {{colors.on_surface.default.hex}};
+@define-color view_bg_color {{colors.surface.default.hex}};
+@define-color view_fg_color {{colors.on_surface.default.hex}};
+@define-color card_bg_color {{colors.surface_container.default.hex}};
+@define-color card_fg_color {{colors.on_surface.default.hex}};
+@define-color sidebar_bg_color @window_bg_color;
+@define-color sidebar_fg_color @window_fg_color;
+@define-color sidebar_border_color @window_bg_color;
+@define-color sidebar_backdrop_color @window_bg_color;
+
+.navigation-sidebar {
+    background-color: {{colors.surface_container_low.default.hex}};
+}
+```
+
+### Matugen config
+Add this to matugen conf
+```toml
+[templates.gtk3]
+input_path = "~/.config/matugen/templates/gtk.tmp"
+output_path = "~/.config/gtk-3.0/colors.css"
+
+[templates.gtk4]
+input_path = "~/.config/matugen/templates/gtk.tmp"
+output_path = "~/.config/gtk-4.0/colors.css"
+```
