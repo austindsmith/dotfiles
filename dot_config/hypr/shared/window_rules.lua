@@ -37,31 +37,7 @@ hl.window_rule({
     match = {
         class = "virt-manager",
     },
-    workspace = "5",
-})
-
-hl.window_rule({
-    match = {
-        class = "steam",
-    },
-    float = true,
-    workspace = "1",
-})
-
-hl.window_rule({
-    match = {
-        class = "steam_app*",
-    },
-    float = true,
-    workspace = "1",
-})
-
-hl.window_rule({
-    match = {
-        initial_title = "Guilty Gear -Strive-",
-    },
-    float = true,
-    workspace = "1",
+    workspace = "",
 })
 
 hl.window_rule({

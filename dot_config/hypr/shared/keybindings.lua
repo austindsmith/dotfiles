@@ -8,7 +8,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exit())
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 --bind = $mainMod, J, togglesplit, # dwindle
@@ -48,6 +48,8 @@ hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special(""))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:" }))
 hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special(""))
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:" }))
+hl.bind(mainMod .. " + V", hl.dsp.workspace.toggle_special(""))
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.move({ workspace = "special:" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
