@@ -42,6 +42,13 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
+        class = "godot",
+    },
+    workspace = "8",
+})
+
+hl.window_rule({
+    match = {
         class = "vesktop",
         initial_title = "Discord Popout",
     },
