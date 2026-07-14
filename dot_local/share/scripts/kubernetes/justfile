@@ -1,0 +1,13 @@
+vault := "the-white-lodge"
+
+get_k8s_file namespace instance path file_name:
+    mkdir -p ./settings_files/{{ instance }}
+    kubectl cp {{ namespace }}/$(kubectl get pod -n {{ namespace }} -l app.kubernetes.io/instance={{ instance }} -o jsonpath='{.items[0].metadata.name}'):{{ path }}/{{ file_name }} ./settings_files/{{ instance }}/{{ file_name }}
+
+# Bugged but almost working.
+#push_file_1password container file_name:
+#    op item edit {{ container }} --vault {{ vault }} "{{ file_name }}[file]=./settings_files/{{ container }}/{{ file_name }}"
+
+#pull_and_push namespace instance path container file_name:
+#    just get_k8s_file {{ namespace }} {{ instance }} {{ path }} {{ file_name }}
+#    just push_file_1password {{ container }} {{ file_name }}
