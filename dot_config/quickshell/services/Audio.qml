@@ -114,7 +114,6 @@ Item {
                             pixelSize: Theme.fontSizeNormal
                         }
                     }
-
                     Text {
                         text: root.percent + "%"
                         color: Theme.accent
@@ -125,15 +124,43 @@ Item {
                         }
                     }
                 }
-
-                Slider {
-                    Layout.fillWidth: true
-                    from: 0
-                    to: 1.5
-                    value: root.sink?.audio?.volume ?? 0
-                    onMoved: {
-                        if (root.sink?.audio)
-                            root.sink.audio.volume = value;
+                RowLayout {
+                    Text {
+                        text: {
+                            if (root.muted)
+                                return "󰝟";
+                            if (root.percent < 34)
+                                return "󰕿";
+                            if (root.percent < 67)
+                                return "󰖀";
+                            return "󰕾";
+                        }
+                        color: Theme.accent
+                        font {
+                            family: Theme.fontFamily
+                            pixelSize: Theme.fontSizeNormal
+                            bold: true
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton
+                            onClicked: event => {
+                                if (!root.sink?.audio)
+                                    return;
+                                if (event.button === Qt.LeftButton)
+                                    root.sink.audio.muted = !root.sink.audio.muted;
+                            }
+                        }
+                    }
+                    Slider {
+                        Layout.fillWidth: true
+                        from: 0
+                        to: 1.5
+                        value: root.sink?.audio?.volume ?? 0
+                        onMoved: {
+                            if (root.sink?.audio)
+                                root.sink.audio.volume = value;
+                        }
                     }
                 }
             }
