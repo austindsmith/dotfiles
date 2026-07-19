@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Services.Pipewire
 import "../config"
 
@@ -13,6 +14,16 @@ Item {
 
     implicitWidth: row.implicitWidth
     implicitHeight: row.implicitHeight
+
+    function openPopup() {
+        popup.visible = true;
+        grab.active = true;
+    }
+
+    function closePopup() {
+        grab.active = false;
+        popup.visible = false;
+    }
 
     PwObjectTracker {
         objects: [root.sink]
@@ -58,9 +69,12 @@ Item {
         onClicked: event => {
             if (!root.sink?.audio)
                 return;
-            if (event.button === Qt.LeftButton)
-                popup.visible = !popup.visible;
-            else if (event.button === Qt.MiddleButton)
+            if (event.button === Qt.LeftButton) {
+                if (popup.visible)
+                    root.closePopup();
+                else
+                    root.openPopup();
+            } else if (event.button === Qt.MiddleButton)
                 root.sink.audio.muted = !root.sink.audio.muted;
             else
                 Quickshell.execDetached(["pavucontrol-qt"]);
@@ -84,6 +98,12 @@ Item {
             item: root
             rect.y: root.height + 6
             rect.x: root.width / 2 - popup.implicitWidth / 2
+        }
+
+        HyprlandFocusGrab {
+            id: grab
+            windows: [popup]
+            onCleared: root.closePopup()
         }
 
         Rectangle {
