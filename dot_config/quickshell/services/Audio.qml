@@ -11,6 +11,7 @@ Item {
     readonly property PwNode sink: Pipewire.defaultAudioSink
     readonly property bool muted: sink?.audio?.muted ?? false
     readonly property int percent: Math.round((sink?.audio?.volume ?? 0) * 100)
+    readonly property var sinks: Pipewire.nodes.values.filter(node => node.isSink && !node.isStream)
 
     implicitWidth: row.implicitWidth
     implicitHeight: row.implicitHeight
@@ -25,8 +26,13 @@ Item {
         popup.visible = false;
     }
 
+    function switchToSink(node) {
+        Pipewire.preferredDefaultAudioSink = node;
+        Quickshell.execDetached(["bash", "-c", `pactl list short sink-inputs | cut -f1 | xargs -r -I{} pactl move-sink-input {} ${node.name}`]);
+    }
+
     PwObjectTracker {
-        objects: [root.sink]
+        objects: [root.sink, ...root.sinks]
     }
 
     RowLayout {
@@ -115,6 +121,8 @@ Item {
             border.color: Theme.accent
             border.width: 1
 
+
+
             ColumnLayout {
                 id: content
                 anchors.fill: parent
@@ -180,6 +188,55 @@ Item {
                         onMoved: {
                             if (root.sink?.audio)
                                 root.sink.audio.volume = value;
+                        }
+                    }
+                }
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Theme.accent
+                    opacity: 0.25
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: 4
+
+                    Repeater {
+                        model: root.sinks
+
+                        delegate: RowLayout {
+                            required property PwNode modelData
+
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            Rectangle {
+                                Layout.preferredWidth: 8
+                                Layout.preferredHeight: 8
+                                radius: 4
+                                color: modelData === root.sink ? Theme.accent : "transparent"
+                                border.color: Theme.accent
+                                border.width: 1
+                            }
+
+                            Text {
+                                text: modelData.description || modelData.name
+                                color: Theme.accent
+                                elide: Text.ElideRight
+                                Layout.fillWidth: true
+                                font {
+                                    family: Theme.fontFamily
+                                    pixelSize: Theme.fontSizeNormal
+                                }
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                acceptedButtons: Qt.LeftButton
+                                onClicked: root.switchToSink(modelData)
+                            }
                         }
                     }
                 }
