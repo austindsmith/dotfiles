@@ -1,5 +1,11 @@
 # Dotfiles
 
+## Todo
+
+- [ ] Cleanup and organize
+- [ ] Uniformize color schemes/themes
+- [ ] Get back to neovim and tmux
+
 - [Color scheme](https://github.com/Sha1rholder/polycarbonate-dark-theme)
 
 ## Windows ideas
